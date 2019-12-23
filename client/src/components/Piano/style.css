@@ -1,0 +1,83 @@
+.piano {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+}
+
+.white-key {
+    width: 20px;
+    height: 60px;
+    border: 2px solid black;
+    margin-left: -4px;
+    outline: none;
+}
+
+.black-key {
+    position: absolute;
+    width: 12px;
+    height: 40px;
+    background-image: linear-gradient(#000000, #303030);
+    border: 1px solid black;
+    outline: none;
+}
+
+.Db3-key {
+    left: 7px;
+}
+  
+  .Eb3-key {
+    left: 23px;
+  }
+  
+  .Gb3-key {
+    left: 55px;
+  }
+  
+  .Ab3-key {
+    left: 71px;
+  }
+  
+  .Bb3-key {
+    left: 87px;
+  }
+  
+  .Db4-key {
+    left: 119px;
+  }
+  
+  .Eb4-key {
+    left: 135px;
+  }
+
+  .Gb4-key {
+    left: 167px;
+  }
+
+  .Ab4-key {
+    left: 183px
+  }
+
+  .Bb4-key {
+    left: 199px;
+  }
+
+  .Db5-key {
+    left: 231px;
+  }
+  
+  .Eb5-key {
+    left: 247px;
+  }
+  
+  .Gb5-key {
+    left: 279px;
+  }
+  
+  .Ab5-key {
+    left: 294px;
+  }
+
+  .Bb5-key {
+    left: 310px;
+  }
+  
