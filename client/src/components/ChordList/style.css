@@ -1,6 +1,6 @@
 .chord-list {
     display: flex;
     flex-flow: row wrap;
-    justify-content: flex-start;
+    justify-content: center;
     margin-top: 40px;
 }

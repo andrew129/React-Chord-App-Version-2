@@ -1,5 +1,6 @@
 import React from 'react';
 import './style.css'
+import Tone from 'tone';
 
 class Piano extends React.Component {
 
@@ -46,183 +47,208 @@ class Piano extends React.Component {
         this.activate()
     }
 
+    handleClick = () => {
+        const synthA = new Tone.PolySynth(8, Tone.Synth, {
+            oscillator : {
+              type : "sine",
+              partials : [0, 1, 6, 7]
+            },
+          
+            "envelope" : {
+              "attack" : 1,
+              "decay" : 0,
+              "sustain" : 1,
+              "release" : 4,
+            },
+          
+            "portamento" : 0.03,
+          
+            "pitchShift" : {
+              "pitch" : -12
+            },
+            
+          })
+        synthA.toMaster()
+        synthA.triggerAttackRelease(this.props.activeNotes, "4n")
+    }
+
     activate = () => {
-        if (this.props.activeNotes.includes('C3')) {
+        if (this.props.activeNotes.includes('C3' || 'c3')) {
             this.setState({
                 C3: 'red',
             })
         }
-        if (this.props.activeNotes.includes('Db3')) {
+        if (this.props.activeNotes.includes('Db3' || 'db3')) {
             this.setState({
                 Db3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('D3')) {
+        if (this.props.activeNotes.includes('D3' || 'd3')) {
             this.setState({
                 D3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Eb3')) {
+        if (this.props.activeNotes.includes('Eb3' || 'eb3')) {
             this.setState({
                 Eb3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('E3')) {
+        if (this.props.activeNotes.includes('E3' || 'e3')) {
             this.setState({
                 E3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('F3')) {
+        if (this.props.activeNotes.includes('F3' || 'f3')) {
             this.setState({
                 F3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Db3')) {
+        if (this.props.activeNotes.includes('Db3' || 'db3')) {
             this.setState({
                 Gb3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('G3')) {
+        if (this.props.activeNotes.includes('G3' || 'g3')) {
             this.setState({
                 G3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Ab3')) {
+        if (this.props.activeNotes.includes('Ab3' || 'ab3')) {
             this.setState({
                 Ab3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('A3')) {
+        if (this.props.activeNotes.includes('A3' || 'a3')) {
             this.setState({
                 A3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Bb3')) {
+        if (this.props.activeNotes.includes('Bb3' || 'bb3')) {
             this.setState({
                 Bb3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('B3')) {
+        if (this.props.activeNotes.includes('B3' || 'b3')) {
             this.setState({
                 B3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('C4')) {
+        if (this.props.activeNotes.includes('C4' || 'c4')) {
             this.setState({
                 C4: 'red',
             })
         }
-        if (this.props.activeNotes.includes('Db4')) {
+        if (this.props.activeNotes.includes('Db4' || 'db4')) {
             this.setState({
                 Db4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('D4')) {
+        if (this.props.activeNotes.includes('D4' || 'd4')) {
             this.setState({
                 D4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Eb4')) {
+        if (this.props.activeNotes.includes('Eb4' || 'eb4')) {
             this.setState({
                 Eb4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('E4')) {
+        if (this.props.activeNotes.includes('E4' || 'e4')) {
             this.setState({
                 E4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('F4')) {
+        if (this.props.activeNotes.includes('F4' || 'f4')) {
             this.setState({
                 F4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Db4')) {
+        if (this.props.activeNotes.includes('Db4' || 'db4')) {
             this.setState({
                 Gb4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('G4')) {
+        if (this.props.activeNotes.includes('G4' || 'g4')) {
             this.setState({
                 G4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Ab4')) {
+        if (this.props.activeNotes.includes('Ab4' || 'ab4')) {
             this.setState({
                 Ab4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('A4')) {
+        if (this.props.activeNotes.includes('A4' || 'a4')) {
             this.setState({
                 A4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Bb4')) {
+        if (this.props.activeNotes.includes('Bb4' || 'bb4')) {
             this.setState({
                 Bb4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('B4')) {
+        if (this.props.activeNotes.includes('B4' || 'b4')) {
             this.setState({
                 B4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('C5')) {
+        if (this.props.activeNotes.includes('C5' || 'c5')) {
             this.setState({
                 C5: 'red',
             })
         }
-        if (this.props.activeNotes.includes('Db5')) {
+        if (this.props.activeNotes.includes('Db5' || 'db5')) {
             this.setState({
                 Db5: 'red'
             })
         }
-        if (this.props.activeNotes.includes('D5')) {
+        if (this.props.activeNotes.includes('D5' || 'd5')) {
             this.setState({
                 D5: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Eb5')) {
+        if (this.props.activeNotes.includes('Eb5' || 'eb5')) {
             this.setState({
                 Eb5: 'red'
             })
         }
-        if (this.props.activeNotes.includes('E5')) {
+        if (this.props.activeNotes.includes('E5' || 'e5')) {
             this.setState({
                 E5: 'red'
             })
         }
-        if (this.props.activeNotes.includes('F5')) {
+        if (this.props.activeNotes.includes('F5' || 'f5')) {
             this.setState({
                 F5: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Gb5')) {
+        if (this.props.activeNotes.includes('Gb5' || 'gb5')) {
             this.setState({
                 Gb5: 'red'
             })
         }
-        if (this.props.activeNotes.includes('G5')) {
+        if (this.props.activeNotes.includes('G5' || 'g5')) {
             this.setState({
                 G5: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Ab5')) {
+        if (this.props.activeNotes.includes('Ab5' || 'ab5')) {
             this.setState({
                 Ab5: 'red'
             })
         }
-        if (this.props.activeNotes.includes('A5')) {
+        if (this.props.activeNotes.includes('A5' || 'a5')) {
             this.setState({
                 A5: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Bb5')) {
+        if (this.props.activeNotes.includes('Bb5' || 'bb5')) {
             this.setState({
                 Bb5: 'red'
             })
         }
-        if (this.props.activeNotes.includes('B5')) {
+        if (this.props.activeNotes.includes('B5' || 'b5')) {
             this.setState({
                 B5: 'red'
             })
@@ -231,9 +257,8 @@ class Piano extends React.Component {
 
     render() {
         console.log(this.props.activeNotes)
-        // const activeColorWhite = this.state.active ? 'black' : 'white'
         return (
-            <div style={{cursor: 'pointer'}} className="piano">
+            <div onClick={this.handleClick} style={{cursor: 'pointer'}} className="piano">
                 <div style={{backgroundColor: `${this.state.C3}`}} data-note="C3" className="white-key C3-key"></div>
                 <div style={{background: `${this.state.Db3}`}} data-note="Db3" className="black-key Db3-key"></div>
                 <div data-note="D3" style={{backgroundColor: `${this.state.D3}`}} className="white-key D3-key"></div>

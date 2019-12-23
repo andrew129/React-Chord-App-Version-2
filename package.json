@@ -24,6 +24,7 @@
     "if-env": "^1.0.4",
     "path": "^0.12.7",
     "react": "^16.12.0",
-    "react-router-dom": "^5.1.2"
+    "react-router-dom": "^5.1.2",
+    "tone": "^13.8.25"
   }
 }
