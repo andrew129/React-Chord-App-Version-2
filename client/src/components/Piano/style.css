@@ -16,8 +16,8 @@
     position: absolute;
     width: 12px;
     height: 40px;
-    background-image: linear-gradient(#000000, #303030);
     border: 1px solid black;
+    /* background-image: linear-gradient(#000000, #303030); */
     outline: none;
 }
 

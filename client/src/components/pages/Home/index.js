@@ -13,10 +13,12 @@ class Home extends React.Component {
 
     onSearchSubmit = (author, chord) => {
         if (author && chord) {
+            const bestChord = chord.split(',')
+            let trimmedArr = bestChord.map(str => str.trim())
             const newChord = {
                 author: author,
                 chordName: chord,
-                currentNotes: chord.split(',')
+                currentNotes: trimmedArr
             }
             
             this.setState({
