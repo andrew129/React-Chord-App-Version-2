@@ -4,8 +4,7 @@ import './style.css'
 
 const ChordList = props => {
     const chords = props.chords.map(chord => {
-        console.log(chord.currentNotes)
-        return <ChordCard chordName={chord.chordName} author={chord.author} activeNotes={chord.currentNotes}/>
+        return <ChordCard key={chord._id} chordName={chord.chordName} author={chord.author} activeNotes={chord.currentNotes}/>
     })
     return (
         <div className='chord-list'>

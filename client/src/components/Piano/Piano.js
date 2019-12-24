@@ -64,7 +64,7 @@ class Piano extends React.Component {
             "portamento" : 0.03,
           
             "pitchShift" : {
-              "pitch" : -12
+              "pitch" : -24
             },
             
           })
@@ -163,7 +163,7 @@ class Piano extends React.Component {
                 F4: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Db4' || 'db4')) {
+        if (this.props.activeNotes.includes('Gb4' || 'gb4')) {
             this.setState({
                 Gb4: 'red'
             })
@@ -256,7 +256,6 @@ class Piano extends React.Component {
     }
 
     render() {
-        console.log(this.props.activeNotes)
         return (
             <div onClick={this.handleClick} style={{cursor: 'pointer'}} className="piano">
                 <div style={{backgroundColor: `${this.state.C3}`}} data-note="C3" className="white-key C3-key"></div>

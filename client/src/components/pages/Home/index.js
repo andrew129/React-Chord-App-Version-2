@@ -1,8 +1,8 @@
 import React from 'react';
 import Form from '../../Form/Form';
-// import Piano from '../../Piano/Piano';
-// import ChordCard from '../../ChordCard/ChordCard';
 import ChordList from '../../ChordList/ChordList';
+import API from '../../../utils/api';
+import './style.css';
 
 class Home extends React.Component {
 
@@ -11,26 +11,30 @@ class Home extends React.Component {
         message: ''
     }
 
+    componentDidMount() {
+        this.getChords()
+    }
+
     onSearchSubmit = (firstname, lastname, chord) => {
         if (firstname && lastname && chord) {
             const bestChord = chord.split(',')
             let trimmedArr = bestChord.map(str => {
-                return str.trim().replace(/C#/g, 'Db').replace(/D#/g, 'Eb').replace(/F#/g, 'Gb').replace(/G#/g, 'Ab').replace(/A#/g, 'Bb')
+                return str.trim().toUpperCase().replace(/C#|c#/g, 'Db').replace(/D#|d#/g, 'Eb').replace(/F#|f#/g, 'Gb').replace(/G#|g#/g, 'Ab').replace(/A#|a#/g, 'Bb')
             })
 
-            console.log(trimmedArr) 
             const newChord = {
                 author: firstname + ' ' + lastname,
                 chordName: chord,
                 currentNotes: trimmedArr
             }
 
-            console.log(newChord)
-            
-            this.setState({
-                chords: this.state.chords.concat(newChord),
-                message: ''
-            })
+            API.saveChord(newChord)
+                .then(res => {
+                    console.log(res)
+                    this.setState({
+                        message: ''
+                    })
+                })
         }
         
         else if (firstname || lastname || chord === '') {
@@ -40,16 +44,21 @@ class Home extends React.Component {
         }
     }
 
-    // convert = arr => {
-    //     for (let i = 0; i < arr.length; i++) {
-    //         arr[i].replace(/C#/g, 'Db')
-    //         arr[i].replace(/D#/g, 'Eb')
-    //         arr[i].replace(/F#/g, 'Gb')
-    //         arr[i].replace(/G#/g, 'Ab')
-    //         arr[i].replace(/A#/g, 'Bb')
-    //     }
-    //     return arr
-    // }
+    getChords = () => {
+        API.getChords()
+            .then(res => {
+                console.log(res)
+                this.setState({
+                    chords: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+                this.setState({
+                    message: 'Currently Having Server Issues Try Later'
+                })
+            })
+    }
 
     render() {
         return (
@@ -69,7 +78,7 @@ class Home extends React.Component {
                 <div className='row'>
                     <div className='col-12'>
                         <h2 class='text-center' style={{marginTop: 80}}>Chord Gallery</h2>
-                        <p class='text-center'>Discover new and interesting Chords, Create more interesting music. Click on each keyboard to hear the chord played.</p>
+                        <p class='text-center description'>Discover new and interesting Chords, Create more interesting music. Click on each keyboard to hear the chord played.</p>
                         <ChordList chords={this.state.chords} />
                     </div>
                 </div>
