@@ -50,8 +50,8 @@ class Piano extends React.Component {
     handleClick = () => {
         const synthA = new Tone.PolySynth(8, Tone.Synth, {
             oscillator : {
-              type : "sine",
-              partials : [0, 1, 6, 7]
+              type : "sawtooth",
+              partials : [3, 5, 6, 7]
             },
           
             "envelope" : {

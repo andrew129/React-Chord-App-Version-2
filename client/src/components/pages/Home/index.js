@@ -18,9 +18,9 @@ class Home extends React.Component {
         this.getChords()
     }
 
-    onSearchSubmit = (firstname, lastname, chord) => {
-        if (firstname && lastname && chord && /,\s*/.test(chord)) {
-            const upperFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1) //first character to uppercase//
+    onSearchSubmit = (firstname, lastname, chord, chordName) => {
+        if (firstname && lastname && chord && chordName && /,\s*/.test(chord) && chord.length >= 5) {
+            const upperFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1) //first character in string to uppercase//
             const upperLastName = lastname.charAt(0).toUpperCase() + lastname.slice(1)
             const bestChord = chord.split(',')
             let trimmedArr = bestChord.map(note => {
@@ -29,7 +29,7 @@ class Home extends React.Component {
 
             const newChord = {
                 author: upperFirstName + ' ' + upperLastName,
-                chordName: chord,
+                chordName: chordName,
                 currentNotes: trimmedArr
             }
 
@@ -48,17 +48,30 @@ class Home extends React.Component {
                         })
                     }, 2000)
                 })
+                .catch(err => {
+                    this.setState({
+                        loading: false,
+                        message: 'Error Unique: Chord Already Exists in Database'
+                    })
+                    console.log(err)
+                })
         }
         
-        if (firstname || lastname || chord === '') {
+        if (firstname || lastname || chord || chordName === '') {
             this.setState({
                 message: 'Error Submitting: Please Fill out all Fields'
             })
         }
-        //testing for commas between every word//
-        if (firstname && lastname && chord && !/,\s*/.test(chord)) {
+
+        if (firstname && lastname && chord && chordName && chord.length < 5) {
             this.setState({
-                message: 'Error Submitting: Please Place a Comma between Every Note'
+                message: 'Error Submitting: Notes in Chords field must be at least 5 Characters long'
+            })
+        }
+        //testing for commas between every word//
+        if (firstname && lastname && chord && chordName && !/,\s*/.test(chord)) {
+            this.setState({
+                message: 'Error Submitting: Please Place a Comma between Every Note(ex. A5, D5)'
             })
         }
     }
@@ -66,7 +79,6 @@ class Home extends React.Component {
     getChords = () => {
         API.getChords()
             .then(res => {
-                console.log(res)
                 this.setState({
                     chords: res.data
                 })
@@ -81,7 +93,7 @@ class Home extends React.Component {
 
     render() {
         return (
-            <div className='container'>
+            <div className='container-fluid'>
                 <div className='row'>
                     <div className='col-3'>
                     </div>
@@ -95,23 +107,19 @@ class Home extends React.Component {
                     </div>
                 </div>
                 <div className='row'>
-                    <div className='row'>
-                        <div className='col-*_*'>
-                            {(!this.state.loading) &&
-                                <div>
-                                    <h2 class='text-center' style={{marginTop: 80}}>Chord Gallery</h2>
-                                    <p class='text-center description'>Discover new and interesting Chords, Create more interesting music. Click on each keyboard to hear the chord played.</p>
-                                    <ChordList chords={this.state.chords} />
-                                </div>
-                            }
-                            {(this.state.loading) &&
-                                <div>
-                                    <Spinner />
-                                    <p style={{marginTop: 10}} class='text-center'>{this.state.loadingMessage}</p>
-                                </div>
-                            } 
+                    {(!this.state.loading) &&
+                        <div className='col-12'>
+                            <h2 className='text-center' style={{marginTop: 80}}>Chord Gallery</h2>
+                            <p className='text-center description'>Discover new and interesting Chords, Create more interesting music. Click on each keyboard to hear the chord played.</p>
+                            <ChordList chords={this.state.chords} />
                         </div>
-                    </div>
+                    }
+                    {(this.state.loading) &&
+                        <div className='col-12'>
+                            <Spinner />
+                            <p style={{marginTop: 10}} class='text-center'>{this.state.loadingMessage}</p>
+                        </div>
+                    } 
                 </div>
             </div>
         )

@@ -5,16 +5,18 @@ class Form extends React.Component {
     state = {
         firstName: '',
         lastName: '',
-        chord: ''
+        chord: '',
+        chordName: ''
     }
 
     onFormSubmit = event => {
         event.preventDefault()
-        this.props.onSubmit(this.state.firstName, this.state.lastName, this.state.chord)
+        this.props.onSubmit(this.state.firstName, this.state.lastName, this.state.chord, this.state.chordName)
         this.setState({
             firstName: '',
             lastName: '',
-            chord: ''
+            chord: '',
+            chordName: ''
         })
     }
 
@@ -30,6 +32,10 @@ class Form extends React.Component {
                     <div className='field'>
                         <label>Last Name</label>
                         <input placeholder='Enter Your Last Name' type='text' value={this.state.lastName} onChange={(e) => this.setState({ lastName: e.target.value })} />
+                    </div>
+                    <div className='field'>
+                        <label>Name of Chord</label>
+                        <input placeholder='Enter Chord Name' type='text' value={this.state.chordName} onChange={(e) => this.setState({ chordName: e.target.value })} />
                     </div>
                     <div className='field'>
                         <label>Notes in Chord</label>
