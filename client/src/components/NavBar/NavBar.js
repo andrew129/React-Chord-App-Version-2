@@ -7,7 +7,7 @@ const NavBar = () => {
             <div className='item'>
             </div>
             <a href='/' className="item">Home</a>
-            <a href='/' className="item">Chord Generator</a>
+            <a href='/generator' className="item">Chord Generator</a>
         </div>
     )
 }
