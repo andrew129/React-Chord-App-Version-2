@@ -15,7 +15,8 @@ class Home extends React.Component {
         loadingMessage: '',
         chordsPerPage: 36,
         currentPage: 1,
-        currentChords: []
+        currentChords: [],
+        currentColor: ''
     }
 
     componentDidMount() {
@@ -83,9 +84,12 @@ class Home extends React.Component {
     getChords = () => {
         API.getChords()
             .then(res => {
+                const randomChords = this.randomize(res.data)
+                console.log(res.data)
                 this.setState({
-                    chords: res.data,
+                    chords: randomChords
                 })
+                console.log(this.state.chords)
             })
             .catch(err => {
                 console.log(err)
@@ -97,8 +101,17 @@ class Home extends React.Component {
 
     paginate = (pageNumber) => {
         this.setState({
-            currentPage: pageNumber
+            currentPage: pageNumber,
         })
+    }
+
+    randomize = arr => {
+        let newArray = arr;
+        for (let i = newArray.length - 1; i > 0; i--) {
+          let j = Math.floor(Math.random() * (i + 1));
+          [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+        }
+        return newArray
     }
 
     render() {
@@ -135,16 +148,17 @@ class Home extends React.Component {
                     } 
                 </div>
                 <div className='row'>
-                    <div className='col-3'>
+                    <div className='col-2'>
                     </div>
-                    <div className='col-6'>
+                    <div className='col-8'>
                         <Pagination
                             totalChords={this.state.chords.length}
                             chordsPerPage={this.state.chordsPerPage}
                             paginate={this.paginate}
+                            currentColor={this.state.currentColor}
                         />
                     </div>
-                    <div className='col-3'>
+                    <div className='col-2'>
                     </div>
                 </div>
             </div>
