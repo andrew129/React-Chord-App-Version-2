@@ -44,7 +44,7 @@ class Generator extends React.Component {
                 <div class='row'>
                     <div class='col-3'>
                     </div>
-                    <div style={{marginTop: 100, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}} className='col-6 generator ui segment'>
+                    <div style={{marginTop: 300, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}} className='col-6 generator ui segment'>
                         <h2>Magic Button</h2>
                         <h5>Click the Magic Button to reveal a random Chord, use it wisely</h5>
                         <button onClick={this.handleClick} style={{marginBottom: 10, marginTop: 10}} className='ui purple button w-50'>Magic Button</button>
