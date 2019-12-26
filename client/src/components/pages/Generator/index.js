@@ -1,6 +1,7 @@
 import React from 'react';
 import Chord from '../../ChordCard/ChordCard';
 import API from '../../../utils/api';
+import Spinner from '../../Spinner/Spinner';
 import './style.css';
 
 class Generator extends React.Component {
@@ -8,20 +9,29 @@ class Generator extends React.Component {
         showChord: false,
         author: '',
         chordName: '',
-        activeNotes: ''
+        activeNotes: '',
+        loading: false
     }
 
     handleClick = () => {
+        this.setState({
+            loading: true,
+            showChord: false
+        })
+
         API.getChords()
             .then(res => {
                 console.log(res.data[Math.floor(res.data.length * Math.random())])
                 const randomChord = res.data[Math.floor(res.data.length * Math.random())]
-                this.setState({
-                    author: randomChord.author,
-                    chordName: randomChord.chordName,
-                    activeNotes: randomChord.currentNotes,
-                    showChord: true
-                })
+                setTimeout(() => {
+                    this.setState({
+                        author: randomChord.author,
+                        chordName: randomChord.chordName,
+                        activeNotes: randomChord.currentNotes,
+                        showChord: true,
+                        loading: false
+                    })
+                }, 1000)
             })
             .catch(err => {
                 console.log(err)
@@ -52,6 +62,12 @@ class Generator extends React.Component {
                                 chordName={this.state.chordName}
                                 activeNotes={this.state.activeNotes}
                             />
+                        </div>
+                    }
+                    {(this.state.loading && !this.state.showChord) &&
+                        <div style={{marginTop: 30}} class='col-6'>
+                            <Spinner />
+                            <p style={{marginTop: 10}} class='text-center'>Generating Chord</p>
                         </div>
                     }
                     <div class='col-3'>
