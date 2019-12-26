@@ -3,6 +3,7 @@ import Form from '../../Form/Form';
 import ChordList from '../../ChordList/ChordList';
 import API from '../../../utils/api';
 import Spinner from '../../Spinner/Spinner';
+import Pagination from '../../Pagination/Pagination';
 import './style.css';
 
 class Home extends React.Component {
@@ -11,7 +12,10 @@ class Home extends React.Component {
         chords: [],
         message: '',
         loading: false,
-        loadingMessage: ''
+        loadingMessage: '',
+        chordsPerPage: 36,
+        currentPage: 1,
+        currentChords: []
     }
 
     componentDidMount() {
@@ -80,7 +84,7 @@ class Home extends React.Component {
         API.getChords()
             .then(res => {
                 this.setState({
-                    chords: res.data
+                    chords: res.data,
                 })
             })
             .catch(err => {
@@ -91,7 +95,16 @@ class Home extends React.Component {
             })
     }
 
+    paginate = (pageNumber) => {
+        this.setState({
+            currentPage: pageNumber
+        })
+    }
+
     render() {
+        const indexOfLast = this.state.currentPage * this.state.chordsPerPage
+        const indexOfFirst = indexOfLast - this.state.chordsPerPage
+        const currentChords = this.state.chords.slice(indexOfFirst, indexOfLast)
         return (
             <div className='container-fluid'>
                 <div className='row'>
@@ -111,7 +124,7 @@ class Home extends React.Component {
                         <div className='col-12'>
                             <h2 className='text-center' style={{marginTop: 80}}>Chord Gallery</h2>
                             <p className='text-center description'>Discover new and interesting Chords, Create more interesting music. Click on each keyboard to hear the chord played.</p>
-                            <ChordList chords={this.state.chords} />
+                            <ChordList chords={currentChords} />
                         </div>
                     }
                     {(this.state.loading) &&
@@ -120,6 +133,19 @@ class Home extends React.Component {
                             <p style={{marginTop: 10}} class='text-center'>{this.state.loadingMessage}</p>
                         </div>
                     } 
+                </div>
+                <div className='row'>
+                    <div className='col-3'>
+                    </div>
+                    <div className='col-6'>
+                        <Pagination
+                            totalChords={this.state.chords.length}
+                            chordsPerPage={this.state.chordsPerPage}
+                            paginate={this.paginate}
+                        />
+                    </div>
+                    <div className='col-3'>
+                    </div>
                 </div>
             </div>
         )
