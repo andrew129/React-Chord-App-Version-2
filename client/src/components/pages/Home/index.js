@@ -21,11 +21,13 @@ const customStyles = {
         width: '75%',
         background: '#a333c8',
         color: 'white',
-        border: 'solid 2px black'
+        border: 'solid 2px black',
+        cursor: 'pointer'
     }),
     option: (provided, state) => ({
         ...provided,
         background: state.isSelected ? 'red' : '',
+        cursor: 'pointer'
     }),
     singleValue: (provided) => ({
         ...provided,
@@ -111,12 +113,16 @@ class Home extends React.Component {
     }
 
     getChords = () => {
+        this.setState({
+            loading: true,
+            loadingMessage: 'Loading Chords'
+        })
         API.getChords()
             .then(res => {
                 const randomChords = this.randomize(res.data)
-                console.log(res.data[1].type)
                 this.setState({
-                    chords: randomChords
+                    chords: randomChords,
+                    loading: false
                 })
             })
             .catch(err => {
@@ -150,12 +156,22 @@ class Home extends React.Component {
     };
 
     getNewChords = chordType => {
+        this.setState({
+            chords: []
+        })
         API.getChords()
             .then(res => {
-                const currentChords = res.data.filter(chord => chord.type === chordType)
-                this.setState({
-                    chords: currentChords
-                })
+                if (chordType === 'All') {
+                    this.setState({
+                        chords: res.data
+                    })
+                }
+                else {
+                    const currentChords = res.data.filter(chord => chord.type === chordType)
+                    this.setState({
+                        chords: currentChords
+                    })
+                }
             })
             .catch(err => {
                 console.log(err)
@@ -211,7 +227,7 @@ class Home extends React.Component {
                     {(this.state.loading) &&
                         <div className='col-12'>
                             <Spinner />
-                            <p style={{marginTop: 10}} class='text-center'>{this.state.loadingMessage}</p>
+                            <p style={{marginTop: 10}} className='text-center'>{this.state.loadingMessage}</p>
                         </div>
                     } 
                 </div>

@@ -23,7 +23,7 @@ class Form extends React.Component {
     render() {
         return (
             <div style={{marginTop: 100}} className='ui segment chord-form'>
-                <h2 class='text-center'>Add Chord</h2>
+                <h2 className='text-center'>Add Chord</h2>
                 <form onSubmit={this.onFormSubmit} className='ui form'>
                     <div className='field'>
                         <label>First Name</label>

@@ -3,7 +3,7 @@ import './style.css'
 
 const Spinner = () => {
     return (
-        <div style={{marginTop: 80}} class="ui active large centered inline loader text-center">
+        <div style={{marginTop: 80}} className="ui active large centered inline loader text-center">
         </div> 
     )
 }

@@ -1,7 +1,8 @@
 import React from 'react';
 import Select from 'react-select';
 
-const options = [
+const chords = [
+  { value: 'All', label: 'All'},
   { value: 'Major', label: 'Major'},
   {value: 'Minor', label: 'Minor'},
   {value: 'Dominant', label: 'Dominant'},
@@ -18,15 +19,18 @@ const customStyles = {
       background: '#a333c8',
       color: 'white',
       border: 'solid 2px black',
-      marginLeft: 60
+      marginLeft: 60,
+      cursor: 'pointer'
   }),
   option: (provided, state) => ({
       ...provided,
       background: state.isSelected ? 'red' : '',
+      cursor: 'pointer'
   }),
   singleValue: (provided) => ({
       ...provided,
-      color: 'white'
+      color: 'white',
+      cursor: 'pointer'
   })
 }
 
@@ -56,7 +60,7 @@ class Filter extends React.Component {
           value={selectedOption}
           Placeholder={this.props.placeholder}
           onChange={this.handleInputChange}
-          options={options}
+          options={chords}
           styles={customStyles}
         />
       </div>
