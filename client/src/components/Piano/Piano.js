@@ -48,6 +48,7 @@ class Piano extends React.Component {
     }
 
     handleClick = () => {
+        const soundName = this.props.soundName
         const synthA = new Tone.PolySynth(8, Tone.Synth, {
             oscillator : {
               type : "sine",
@@ -65,11 +66,41 @@ class Piano extends React.Component {
           
             "pitchShift" : {
               "pitch" : -24
+            },  
+        })
+        const synthB = new Tone.PolySynth(8, Tone.Synth, {
+
+            oscillator: {
+              type : 'sine',
+              modulationType : "sine",
+              modulationIndex: 3,
+              frequency : 440,
+              harmonicity : 3.4,
             },
             
-          })
-        synthA.toMaster()
-        synthA.triggerAttackRelease(this.props.activeNotes, "4n")
+            portamento: 0.1,
+          
+            envelope: {
+              attack: 0.001,
+              decay: 0.5,
+              sustain: 0.1,
+              release: 0.1   
+            },
+          
+            pitchShift: {
+              pitch: -12
+            },
+        })
+        if (soundName === 'Ambient Pad') {
+            synthA.toMaster()
+            synthB.disconnect()
+            synthA.triggerAttackRelease(this.props.activeNotes, "4n")
+        }
+        if (soundName === 'Breezy Day') {
+            synthA.disconnect()
+            synthB.toMaster()
+            synthB.triggerAttackRelease(this.props.activeNotes, "4n")
+        }
     }
 
     activate = () => {
@@ -103,7 +134,7 @@ class Piano extends React.Component {
                 F3: 'red'
             })
         }
-        if (this.props.activeNotes.includes('Db3' || 'db3')) {
+        if (this.props.activeNotes.includes('Gb3' || 'gb3')) {
             this.setState({
                 Gb3: 'red'
             })

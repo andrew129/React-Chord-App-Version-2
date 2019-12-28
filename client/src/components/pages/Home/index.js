@@ -4,7 +4,34 @@ import ChordList from '../../ChordList/ChordList';
 import API from '../../../utils/api';
 import Spinner from '../../Spinner/Spinner';
 import Pagination from '../../Pagination/Pagination';
-import './style.css';
+import Filter from '../../Filter/Filter';
+import Select from 'react-select';
+import './style.css'
+
+const options = [
+    { value: 'Ambient Pad', label: 'Ambient Pad' },
+    { value: 'Breezy Day', label: 'Breezy Day' },
+];
+
+const customStyles = {
+    control: (provided) => ({
+        ...provided,
+        marginTop: 111,
+        marginRight: '110px',
+        width: '75%',
+        background: '#a333c8',
+        color: 'white',
+        border: 'solid 2px black'
+    }),
+    option: (provided, state) => ({
+        ...provided,
+        background: state.isSelected ? 'red' : '',
+    }),
+    singleValue: (provided) => ({
+        ...provided,
+        color: 'white'
+    })
+  }
 
 class Home extends React.Component {
 
@@ -16,7 +43,9 @@ class Home extends React.Component {
         chordsPerPage: 36,
         currentPage: 1,
         currentChords: [],
-        currentColor: ''
+        currentColor: '',
+        selectedOption: null,
+        selectedValue: '',
     }
 
     componentDidMount() {
@@ -85,11 +114,10 @@ class Home extends React.Component {
         API.getChords()
             .then(res => {
                 const randomChords = this.randomize(res.data)
-                console.log(res.data)
+                console.log(res.data[1].type)
                 this.setState({
                     chords: randomChords
                 })
-                console.log(this.state.chords)
             })
             .catch(err => {
                 console.log(err)
@@ -114,10 +142,31 @@ class Home extends React.Component {
         return newArray
     }
 
+    handleChange = selectedOption => {
+        this.setState({ selectedOption })
+        this.setState({
+            selectedValue: selectedOption.value
+        })
+    };
+
+    getNewChords = chordType => {
+        API.getChords()
+            .then(res => {
+                const currentChords = res.data.filter(chord => chord.type === chordType)
+                this.setState({
+                    chords: currentChords
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
     render() {
         const indexOfLast = this.state.currentPage * this.state.chordsPerPage
         const indexOfFirst = indexOfLast - this.state.chordsPerPage
         const currentChords = this.state.chords.slice(indexOfFirst, indexOfLast)
+        const {selectedOption} = this.state
         return (
             <div className='container-fluid'>
                 <div className='row'>
@@ -133,11 +182,30 @@ class Home extends React.Component {
                     </div>
                 </div>
                 <div className='row'>
+                    <div className='col-2'>
+                        <Filter
+                            getNewChords={this.getNewChords}
+                            placeholder={" Select Chord Type "}
+                        />
+                    </div>
+                    <div className='col-8'>
+                        <h2 className='text-center' style={{marginTop: 80}}>Chord Gallery</h2>
+                        <p className='text-center description'>Discover new and interesting Chords, Create more interesting music. Select a sound with the selector on the right and click on each keyboard to hear the chord played.</p>
+                    </div>
+                    <div className='col-2'>
+                        <Select 
+                            value={selectedOption}
+                            onChange={this.handleChange}
+                            options={options}
+                            styles={customStyles}
+                            placeholder={" Select Sound "}
+                        />
+                    </div>
+                </div>
+                <div className='row'>
                     {(!this.state.loading) &&
                         <div className='col-12'>
-                            <h2 className='text-center' style={{marginTop: 80}}>Chord Gallery</h2>
-                            <p className='text-center description'>Discover new and interesting Chords, Create more interesting music. Click on each keyboard to hear the chord played.</p>
-                            <ChordList chords={currentChords} />
+                            <ChordList soundName={this.state.selectedValue} chords={currentChords} />
                         </div>
                     }
                     {(this.state.loading) &&
@@ -148,7 +216,7 @@ class Home extends React.Component {
                     } 
                 </div>
                 <div className='row'>
-                    <div className='col-2'>
+                    <div className='col-2'>               
                     </div>
                     <div className='col-8'>
                         <Pagination

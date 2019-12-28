@@ -8,5 +8,9 @@ export default {
 
     getChords: function() {
         return axios.get('/api/chords')
+    },
+
+    getChordsByType: function(type) {
+        return axios.get('/api/chords' + type)
     }
 }

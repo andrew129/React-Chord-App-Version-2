@@ -6,9 +6,9 @@ const Pagination = props => {
         pageNumbers.push(i)
     }
     return (
-        <div style={{background: '#a333c8'}} className='ui borderless menu mb-5'>
+        <div style={{background: '#a333c8', border: 'solid 2px black'}} className='ui borderless menu mb-5'>
             {pageNumbers.map(number => (
-                <a style={{color: 'white'}} onClick={() => props.paginate(number)} class='item'>{number}</a>
+                <a href='#' style={{color: 'white'}} onClick={() => props.paginate(number)} class='item'>{number}</a>
             ))}
         </div>
     )
