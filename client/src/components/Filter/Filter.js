@@ -36,30 +36,30 @@ const customStyles = {
 
 class Filter extends React.Component {
   state = {
-    selectedValue: '',
-    selectedOption: null
+    selectedChordType: '',
+    selectedChord: ''
   }
 
-  handleInputChange = selectedOption => {
+  handleChange = selectedChord => {
     this.setState({
-      selectedOption,
+      selectedChord,
     })
-    console.log(this.state.selectedOption)
+    console.log(this.state.selectedChord)
     this.setState({
-      selectedValue: selectedOption.value
+      selectedChordType: selectedChord.value
     })
-    console.log(this.state.selectedValue)
-    this.props.getNewChords(this.state.selectedValue)
+    console.log(this.state.selectedChordType)
+    this.props.getNewChords(selectedChord.value)
   }
 
   render() {
-    const {selectedOption} = this.state
+    const {selectedChord} = this.state
     return (
       <div>
         <Select 
-          value={selectedOption}
-          Placeholder={this.props.placeholder}
-          onChange={this.handleInputChange}
+          value={selectedChord}
+          placeholder={this.props.placeholder}
+          onChange={this.handleChange}
           options={chords}
           styles={customStyles}
         />

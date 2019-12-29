@@ -13,6 +13,7 @@ const options = [
     { value: 'Breezy Day', label: 'Breezy Day' },
 ];
 
+
 const customStyles = {
     control: (provided) => ({
         ...provided,
@@ -44,10 +45,11 @@ class Home extends React.Component {
         loadingMessage: '',
         chordsPerPage: 36,
         currentPage: 1,
-        currentChords: [],
         currentColor: '',
         selectedOption: null,
         selectedValue: '',
+        selectedChordType: '',
+        selectedChord: null
     }
 
     componentDidMount() {
@@ -156,11 +158,18 @@ class Home extends React.Component {
     };
 
     getNewChords = chordType => {
+        console.log(chordType)
         this.setState({
+            loading: true,
             chords: []
         })
         API.getChords()
             .then(res => {
+                setTimeout(() => {
+                    this.setState({
+                        loading: false
+                    })
+                }, 1000)
                 if (chordType === 'All') {
                     this.setState({
                         chords: res.data
@@ -201,7 +210,7 @@ class Home extends React.Component {
                     <div className='col-2'>
                         <Filter
                             getNewChords={this.getNewChords}
-                            placeholder={" Select Chord Type "}
+                            placeholder={" Show... "}
                         />
                     </div>
                     <div className='col-8'>

@@ -16,7 +16,6 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    console.log('get', req.body)
     db.Chord.find({})
         .then(dbChord => {
             console.log(dbChord)
