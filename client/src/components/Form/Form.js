@@ -1,26 +1,45 @@
 import React from 'react';
 import './style.css';
+import Select from 'react-select';
+
+const chords = [
+    { value: 'Major', label: 'Major'},
+    {value: 'Minor', label: 'Minor'},
+    {value: 'Dominant', label: 'Dominant'},
+    {value: 'Diminished', label: 'Diminished'},
+    {value: 'Augmented', label: 'Augmented'},
+    {value: 'Suspended', label: 'Suspended'}
+]
 
 class Form extends React.Component {
     state = {
         firstName: '',
         lastName: '',
         chord: '',
-        chordName: ''
+        chordName: '',
+        selectedOption: ''
     }
 
     onFormSubmit = event => {
+        const {value} = this.state.selectedOption
+        console.log(value)
         event.preventDefault()
-        this.props.onSubmit(this.state.firstName, this.state.lastName, this.state.chord, this.state.chordName)
+        this.props.onSubmit(this.state.firstName, this.state.lastName, this.state.chord, this.state.chordName, value)
         this.setState({
             firstName: '',
             lastName: '',
             chord: '',
-            chordName: ''
+            chordName: '',
+            selectedOption: ''
         })
     }
 
+    handleChange = selectedOption => {
+        this.setState({ selectedOption })
+    }
+
     render() {
+        const {selectedOption} = this.state
         return (
             <div style={{marginTop: 100}} className='ui segment chord-form'>
                 <h2 className='text-center'>Add Chord</h2>
@@ -40,6 +59,15 @@ class Form extends React.Component {
                     <div className='field'>
                         <label>Notes in Chord</label>
                         <input placeholder="Enter Notes in chord with the octave seperated by commas (ex. E5, A3)" type='text' value={this.state.chord} onChange={(e) => this.setState({ chord: e.target.value })} />
+                    </div>
+                    <div className='field'>
+                        <label>Type of Chord</label>
+                        <Select 
+                            value={selectedOption}
+                            placeholder={"Select Type of Chord"}
+                            onChange={this.handleChange}
+                            options={chords}
+                        />
                     </div>
                     <button style={{marginBottom: 10}} className='ui purple button w-100'>Submit</button>
                 </form>

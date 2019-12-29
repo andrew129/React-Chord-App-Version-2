@@ -56,8 +56,8 @@ class Home extends React.Component {
         this.getChords()
     }
 
-    onSearchSubmit = (firstname, lastname, chord, chordName) => {
-        if (firstname && lastname && chord && chordName && /,\s*/.test(chord) && chord.length >= 5) {
+    onSearchSubmit = (firstname, lastname, chord, chordName, chordType) => {
+        if (firstname && lastname && chord && chordName && chordType && /,\s*/.test(chord) && chord.length >= 5) {
             const upperFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1) //first character in string to uppercase//
             const upperLastName = lastname.charAt(0).toUpperCase() + lastname.slice(1)
             const bestChord = chord.split(',')
@@ -68,7 +68,8 @@ class Home extends React.Component {
             const newChord = {
                 author: upperFirstName + ' ' + upperLastName,
                 chordName: chordName,
-                currentNotes: trimmedArr
+                currentNotes: trimmedArr,
+                type: chordType
             }
 
             API.saveChord(newChord)
@@ -95,19 +96,19 @@ class Home extends React.Component {
                 })
         }
         
-        if (firstname || lastname || chord || chordName === '') {
+        if (firstname || lastname || chord || chordName || chordType === '') {
             this.setState({
                 message: 'Error Submitting: Please Fill out all Fields'
             })
         }
 
-        if (firstname && lastname && chord && chordName && chord.length < 5) {
+        if (firstname && lastname && chord && chordName && chordType && chord.length < 5) {
             this.setState({
                 message: 'Error Submitting: Notes in Chords field must be at least 5 Characters long'
             })
         }
         //testing for commas between every word//
-        if (firstname && lastname && chord && chordName && !/,\s*/.test(chord)) {
+        if (firstname && lastname && chord && chordName && chordType && !/,\s*/.test(chord)) {
             this.setState({
                 message: 'Error Submitting: Please Place a Comma between Every Note(ex. A5, D5)'
             })
