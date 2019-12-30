@@ -291,40 +291,40 @@ class Piano extends React.Component {
             <div onClick={this.handleClick} style={{cursor: 'pointer'}} className="piano">
                 <div style={{backgroundColor: `${this.state.C3}`}} data-note="C3" className="white-key C3-key"></div>
                 <div style={{background: `${this.state.Db3}`}} data-note="Db3" className="black-key Db3-key"></div>
-                <div data-note="D3" style={{backgroundColor: `${this.state.D3}`}} className="white-key D3-key"></div>
-                <div data-note="Eb3" style={{background: `${this.state.Eb3}`}} className="black-key Eb3-key"></div>
-                <div data-note="E3" style={{backgroundColor: `${this.state.E3}`}}  className="white-key E3-key"></div>
-                <div data-note="F3" style={{backgroundColor: `${this.state.F3}`}}  className="white-key F3-key"></div>
-                <div data-note="Gb3" style={{background: `${this.state.Gb3}`}} className="black-key Gb3-key"></div>
-                <div data-note="G3" style={{backgroundColor: `${this.state.G3}`}} className="white-key G3-key"></div>
-                <div data-note="Ab3" style={{background: `${this.state.Ab3}`}} className="black-key Ab3-key"></div>
-                <div data-note="A3" style={{backgroundColor: `${this.state.A3}`}} className="white-key A3-key"></div>
-                <div data-note="Bb3" style={{background: `${this.state.Bb3}`}} className="black-key Bb3-key"></div>
-                <div data-note="B3" style={{backgroundColor: `${this.state.B3}`}} className="white-key B3-key"></div>
-                <div data-note="C4" style={{backgroundColor: `${this.state.C4}`}} className="white-key C4-key"></div>
-                <div data-note="Db4" style={{background: `${this.state.Db4}`}} className="black-key Db4-key"></div>
-                <div data-note="D4" style={{backgroundColor: `${this.state.D4}`}} className="white-key D4-key"></div>
-                <div data-note="Eb4" style={{background: `${this.state.Eb4}`}} className="black-key Eb4-key"></div>
-                <div data-note="E4" style={{backgroundColor: `${this.state.E4}`}} className="white-key E4-key"></div>
-                <div data-note="F4" style={{backgroundColor: `${this.state.F4}`}} className="white-key F4-key"></div>
-                <div data-note="Gb4" style={{background: `${this.state.Gb4}`}} className="black-key Gb4-key"></div>
-                <div data-note="G4" style={{backgroundColor: `${this.state.G4}`}} className="white-key G4-key"></div>
-                <div data-note="Ab4" style={{background: `${this.state.Ab4}`}} className="black-key Ab4-key"></div>
-                <div data-note="A4" style={{backgroundColor: `${this.state.A4}`}} className="white-key A4-key"></div>
-                <div data-note="Bb4" style={{background: `${this.state.Bb4}`}} className="black-key Bb4-key"></div>
-                <div data-note="B4" style={{backgroundColor: `${this.state.B4}`}} className="white-key B4-key"></div>
-                <div data-note="C5" style={{backgroundColor: `${this.state.C5}`}} className="white-key C5-key"></div>
-                <div data-note="Db5" style={{background: `${this.state.Db5}`}} className="black-key Db5-key"></div>
-                <div data-note="D5" style={{backgroundColor: `${this.state.D5}`}} className="white-key D5-key"></div>
-                <div data-note="Eb5" style={{background: `${this.state.Eb5}`}} className="black-key Eb5-key"></div>
-                <div data-note="E5" style={{backgroundColor: `${this.state.E5}`}} className="white-key E5-key"></div>
-                <div data-note="F5" style={{backgroundColor: `${this.state.F5}`}} className="white-key F5-key"></div>
-                <div data-note="Gb5" style={{background: `${this.state.Gb5}`}} className="black-key Gb5-key"></div>
-                <div data-note="G5" style={{backgroundColor: `${this.state.G5}`}} className="white-key G5-key"></div>
-                <div data-note="Ab5" style={{background: `${this.state.Ab5}`}} className="black-key Ab5-key"></div>
-                <div data-note="A5" style={{backgroundColor: `${this.state.A5}`}} className="white-key A5-key"></div>
-                <div data-note="Bb5" style={{background: `${this.state.Bb5}`}} className="black-key Bb5-key"></div>
-                <div data-note="B5" style={{backgroundColor: `${this.state.B5}`}} className="white-key B5-key"></div>
+                <div style={{backgroundColor: `${this.state.D3}`}} className="white-key D3-key"></div>
+                <div style={{background: `${this.state.Eb3}`}} className="black-key Eb3-key"></div>
+                <div style={{backgroundColor: `${this.state.E3}`}}  className="white-key E3-key"></div>
+                <div style={{backgroundColor: `${this.state.F3}`}}  className="white-key F3-key"></div>
+                <div style={{background: `${this.state.Gb3}`}} className="black-key Gb3-key"></div>
+                <div style={{backgroundColor: `${this.state.G3}`}} className="white-key G3-key"></div>
+                <div style={{background: `${this.state.Ab3}`}} className="black-key Ab3-key"></div>
+                <div style={{backgroundColor: `${this.state.A3}`}} className="white-key A3-key"></div>
+                <div style={{background: `${this.state.Bb3}`}} className="black-key Bb3-key"></div>
+                <div style={{backgroundColor: `${this.state.B3}`}} className="white-key B3-key"></div>
+                <div style={{backgroundColor: `${this.state.C4}`}} className="white-key C4-key"></div>
+                <div style={{background: `${this.state.Db4}`}} className="black-key Db4-key"></div>
+                <div style={{backgroundColor: `${this.state.D4}`}} className="white-key D4-key"></div>
+                <div style={{background: `${this.state.Eb4}`}} className="black-key Eb4-key"></div>
+                <div style={{backgroundColor: `${this.state.E4}`}} className="white-key E4-key"></div>
+                <div style={{backgroundColor: `${this.state.F4}`}} className="white-key F4-key"></div>
+                <div style={{background: `${this.state.Gb4}`}} className="black-key Gb4-key"></div>
+                <div style={{backgroundColor: `${this.state.G4}`}} className="white-key G4-key"></div>
+                <div style={{background: `${this.state.Ab4}`}} className="black-key Ab4-key"></div>
+                <div style={{backgroundColor: `${this.state.A4}`}} className="white-key A4-key"></div>
+                <div style={{background: `${this.state.Bb4}`}} className="black-key Bb4-key"></div>
+                <div style={{backgroundColor: `${this.state.B4}`}} className="white-key B4-key"></div>
+                <div style={{backgroundColor: `${this.state.C5}`}} className="white-key C5-key"></div>
+                <div style={{background: `${this.state.Db5}`}} className="black-key Db5-key"></div>
+                <div style={{backgroundColor: `${this.state.D5}`}} className="white-key D5-key"></div>
+                <div style={{background: `${this.state.Eb5}`}} className="black-key Eb5-key"></div>
+                <div style={{backgroundColor: `${this.state.E5}`}} className="white-key E5-key"></div>
+                <div style={{backgroundColor: `${this.state.F5}`}} className="white-key F5-key"></div>
+                <div style={{background: `${this.state.Gb5}`}} className="black-key Gb5-key"></div>
+                <div style={{backgroundColor: `${this.state.G5}`}} className="white-key G5-key"></div>
+                <div style={{background: `${this.state.Ab5}`}} className="black-key Ab5-key"></div>
+                <div style={{backgroundColor: `${this.state.A5}`}} className="white-key A5-key"></div>
+                <div style={{background: `${this.state.Bb5}`}} className="black-key Bb5-key"></div>
+                <div style={{backgroundColor: `${this.state.B5}`}} className="white-key B5-key"></div>
             </div>
         )
     }
