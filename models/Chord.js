@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const uniqueValidator = require('mongoose-unique-validator');
 const Schema = mongoose.Schema;
 
 const ChordSchema = new Schema({
@@ -8,8 +7,6 @@ const ChordSchema = new Schema({
     currentNotes: {type: Array, required: true},
     type: {type: String, required: true} 
 });
-
-ChordSchema.plugin(uniqueValidator);
 
 const Chord = mongoose.model("Chord", ChordSchema);
 
