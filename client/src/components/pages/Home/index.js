@@ -57,8 +57,8 @@ class Home extends React.Component {
     }
 
     onSearchSubmit = (firstname, lastname, chord, chordName, chordType) => {
+        this.setState({ message: '' })
         if (firstname && lastname && chord && chordName && chordType && /,\s*/.test(chord) && /(.*[3-6]){2}/i.test(chord) && chord.length >= 5) {
-            this.setState({ message: '' })
             const upperFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1) //first character in string to uppercase//
             const upperLastName = lastname.charAt(0).toUpperCase() + lastname.slice(1)
             const bestChord = chord.split(',')
@@ -97,25 +97,25 @@ class Home extends React.Component {
                 })
         }
         
-        if (firstname || lastname || chord || chordName || chordType === '') {
+        else if (firstname || lastname || chord || chordName || chordType === '') {
             this.setState({
                 message: 'Error Submitting: Please Fill out all Fields'
             })
         }
 
-        if (firstname && lastname && chord && chordName && chordType && chord.length < 5) {
+        else if (firstname && lastname && chord && chordName && chordType && chord.length < 5) {
             this.setState({
                 message: 'Error Submitting: Notes in Chords field must be at least 5 Characters long'
             })
         }
         //testing for commas between every word//
-        if (firstname && lastname && chord && chordName && chordType && !/,\s*/.test(chord)) {
+        else if (firstname && lastname && chord && chordName && chordType && !/,\s*/.test(chord)) {
             this.setState({
                 message: 'Error Submitting: Please Place a Comma between Every Note(ex. A5, D5)'
             })
         }
 
-        if (firstname && lastname && chord && chordName && chordType && chord.length >= 5 && !/(.*[3-6]){2}/i.test(chord)) {
+        else if (firstname && lastname && chord && chordName && chordType && chord.length >= 5 && !/(.*[3-6]){2}/i.test(chord)) {
             this.setState({
                 message: 'Error Submitting: There must be at least two numbers and they must be between 3 and 6 (ex. A#5, D#3...)'
             })
