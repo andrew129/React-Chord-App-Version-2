@@ -58,6 +58,7 @@ class Home extends React.Component {
 
     onSearchSubmit = (firstname, lastname, chord, chordName, chordType) => {
         if (firstname && lastname && chord && chordName && chordType && /,\s*/.test(chord) && /(.*[3-6]){2}/i.test(chord) && chord.length >= 5) {
+            this.setState({ message: '' })
             const upperFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1) //first character in string to uppercase//
             const upperLastName = lastname.charAt(0).toUpperCase() + lastname.slice(1)
             const bestChord = chord.split(',')
