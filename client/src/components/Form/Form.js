@@ -57,7 +57,7 @@ class Form extends React.Component {
                         <input placeholder='Enter Chord Name' type='text' value={this.state.chordName} onChange={(e) => this.setState({ chordName: e.target.value })} />
                     </div>
                     <div className='field'>
-                        <label>Notes in Chord</label>
+                        <label>Notes in Chord (ex. A#5, E5, C3)</label>
                         <input placeholder="Enter Notes in chord with the octave seperated by commas (ex. E5, A3)" type='text' value={this.state.chord} onChange={(e) => this.setState({ chord: e.target.value })} />
                     </div>
                     <div className='field'>
