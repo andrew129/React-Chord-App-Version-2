@@ -57,7 +57,7 @@ class Home extends React.Component {
     }
 
     onSearchSubmit = (firstname, lastname, chord, chordName, chordType) => {
-        if (firstname && lastname && chord && chordName && chordType && /,\s*/.test(chord) && chord.length >= 5) {
+        if (firstname && lastname && chord && chordName && chordType && /,\s*/.test(chord) && /(.*[3-6]){2}/i.test(chord) && chord.length >= 5) {
             const upperFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1) //first character in string to uppercase//
             const upperLastName = lastname.charAt(0).toUpperCase() + lastname.slice(1)
             const bestChord = chord.split(',')
@@ -113,6 +113,13 @@ class Home extends React.Component {
                 message: 'Error Submitting: Please Place a Comma between Every Note(ex. A5, D5)'
             })
         }
+
+        if (firstname && lastname && chord && chordName && chordType && chord.length >= 5 && !/(.*[3-6]){2}/i.test(chord)) {
+            this.setState({
+                message: 'Error Submitting: There must be at least two numbers and they must be between 3 and 6 (ex. A#5, D#3...)'
+            })
+        }
+
     }
 
     getChords = () => {
@@ -211,12 +218,12 @@ class Home extends React.Component {
                     <div className='col-2'>
                         <Filter
                             getNewChords={this.getNewChords}
-                            placeholder={" Show... "}
+                            placeholder={" Select Type "}
                         />
                     </div>
                     <div className='col-8'>
                         <h2 className='text-center' style={{marginTop: 80}}>Chord Gallery</h2>
-                        <p className='text-center description'>Discover new and interesting Chords, Create more interesting music. Select a sound with the selector on the right and click on each keyboard to hear the chord played.</p>
+                        <p className='text-center description'>Discover new and interesting Chords, Create more interesting music. Select a sound with the selector on the right and click on each keyboard to hear the chord played.  To filter by chord type click the box on the left.</p>
                     </div>
                     <div className='col-2'>
                         <Select 

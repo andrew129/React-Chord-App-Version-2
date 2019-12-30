@@ -19,8 +19,8 @@ const customStyles = {
       background: '#a333c8',
       color: 'white',
       border: 'solid 2px black',
-      marginLeft: 60,
-      cursor: 'pointer'
+      cursor: 'pointer',
+      marginLeft: 50
   }),
   option: (provided, state) => ({
       ...provided,
