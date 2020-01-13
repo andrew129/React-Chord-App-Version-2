@@ -63,7 +63,7 @@ class Home extends React.Component {
             const upperLastName = lastname.charAt(0).toUpperCase() + lastname.slice(1)
             const bestChord = chord.split(',')
             let trimmedArr = bestChord.map(note => {
-                return note.trim().toUpperCase().replace(/C#|c#/g, 'Db').replace(/D#|d#/g, 'Eb').replace(/F#|f#/g, 'Gb').replace(/G#|g#/g, 'Ab').replace(/A#|a#/g, 'Bb')
+                return note.trim().replace(/C#|c#|DB/g, 'Db').replace(/D#|d#|Eb/g, 'Eb').replace(/F#|f#|GB/g, 'Gb').replace(/G#|g#|AB/g, 'Ab').replace(/A#|a#|BB/g, 'Bb')
             })
 
             const newChord = {
