@@ -88,13 +88,13 @@ class Home extends React.Component {
                         })
                     }, 2000)
                 })
-                .catch(err => {
-                    this.setState({
-                        loading: false,
-                        message: 'Error Unique: Chord Already Exists in Database'
-                    })
-                    console.log(err)
-                })
+                // .catch(err => {
+                //     this.setState({
+                //         loading: false,
+                //         message: 'Error Unique: Chord Already Exists in Database'
+                //     })
+                //     console.log(err)
+                // })
         }
         
         else if (firstname || lastname || chord || chordName || chordType === '') {
