@@ -45,11 +45,10 @@ class Home extends React.Component {
         loadingMessage: '',
         chordsPerPage: 36,
         currentPage: 1,
-        currentColor: '',
         selectedOption: null,
         selectedValue: '',
         selectedChordType: '',
-        selectedChord: null
+        selectedChord: null,
     }
 
     componentDidMount() {
@@ -245,7 +244,7 @@ class Home extends React.Component {
                     {(this.state.loading) &&
                         <div className='col-12'>
                             <Spinner />
-                            <p style={{marginTop: 10}} className='text-center'>{this.state.loadingMessage}</p>
+                            <p style={{marginTop: 10, marginBottom: 80}} className='text-center'>{this.state.loadingMessage}</p>
                         </div>
                     } 
                 </div>
@@ -257,7 +256,6 @@ class Home extends React.Component {
                             totalChords={this.state.chords.length}
                             chordsPerPage={this.state.chordsPerPage}
                             paginate={this.paginate}
-                            currentColor={this.state.currentColor}
                         />
                     </div>
                     <div className='col-2'>

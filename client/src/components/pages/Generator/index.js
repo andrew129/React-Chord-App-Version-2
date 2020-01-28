@@ -107,7 +107,7 @@ class Generator extends React.Component {
                     </div>
                     <div style={{marginTop: 300, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}} className='col-6 generator ui segment'>
                         <h2>Magic Button</h2>
-                        <h5>Click the Magic Button to reveal a randomly generated Chord, use it wisely. Warning, Since this is random some of the chords will sound horrible.  Once again use the selector to choose the sound.</h5>
+                        <h5 style={{lineHeight: '2rem'}}>Click the Magic Button to reveal a randomly generated Chord, use it wisely. Warning, Since this is random some of the chords will sound horrible.  Once again use the selector to choose the sound.</h5>
                         <button onClick={this.handleClick} style={{marginBottom: 10, marginTop: 10}} className='ui purple button w-50'>Magic Button</button>
                     </div>
                     <div class='col-3'>

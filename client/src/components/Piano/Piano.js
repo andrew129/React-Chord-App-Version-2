@@ -40,7 +40,8 @@ class Piano extends React.Component {
         Ab5: 'linear-gradient(#000000, #303030)',
         A5: 'white',
         Bb5: 'linear-gradient(#000000, #303030)',
-        B5: 'white'
+        B5: 'white',
+        colorBack: 'none'
     }
 
     componentDidMount() {
@@ -48,6 +49,9 @@ class Piano extends React.Component {
     }
 
     handleClick = () => {
+        this.setState({
+            colorBack: 'red'
+        })
         const soundName = this.props.soundName
         const synthA = new Tone.PolySynth(8, Tone.Synth, {
             oscillator : {
@@ -288,7 +292,7 @@ class Piano extends React.Component {
 
     render() {
         return (
-            <div onClick={this.handleClick} style={{cursor: 'pointer'}} className="piano">
+            <div onClick={this.handleClick} style={{cursor: 'pointer', backgroundColor: `${this.state.colorBack}`}} className="piano">
                 <div style={{backgroundColor: `${this.state.C3}`}} data-note="C3" className="white-key C3-key"></div>
                 <div style={{background: `${this.state.Db3}`}} data-note="Db3" className="black-key Db3-key"></div>
                 <div style={{backgroundColor: `${this.state.D3}`}} className="white-key D3-key"></div>
