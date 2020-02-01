@@ -5,8 +5,8 @@ const app = express();
 const chords = require('./routes/chordRoutes')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+app.use(bodyParser.json({}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 mongoose.promise = Promise
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/chord-storage", { useNewUrlParser: true });
