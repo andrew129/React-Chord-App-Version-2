@@ -3,6 +3,13 @@ import Piano from '../Piano/Piano';
 import './style.css';
 
 const ChordCard = props => {
+    const mappedNotes = props.activeNotes.map(note => {
+        return {
+            note: note,
+            selected: true
+        }
+    })
+    console.log(mappedNotes)
     return (
         <div style={{margin: 10}} className='chord-content ui segment'>
             <h5 style={{fontSize: 18}}>{props.chordName}</h5>

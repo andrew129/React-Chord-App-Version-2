@@ -2,6 +2,7 @@ import React from 'react';
 import './style.css'
 import Tone from 'tone';
 
+
 class Piano extends React.Component {
 
     state = {
@@ -108,6 +109,7 @@ class Piano extends React.Component {
     }
 
     activate = () => {
+        
         if (this.props.activeNotes.includes('C3' || 'c3')) {
             this.setState({
                 C3: 'red',
@@ -289,6 +291,8 @@ class Piano extends React.Component {
             })
         }
     }
+
+
 
     render() {
         return (
