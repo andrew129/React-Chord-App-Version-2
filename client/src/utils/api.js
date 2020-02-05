@@ -10,7 +10,12 @@ export default {
         return axios.get('/api/chords')
     },
 
-    getChordsByType: function(type) {
-        return axios.get('/api/chords' + type)
+    saveProgression: function(data) {
+        console.log('data coming in', data)
+        return axios.post('/api/progressions', data)
+    },
+
+    getProgressions: function() {
+        return axios.get('/api/progressions')
     }
 }

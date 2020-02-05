@@ -2,34 +2,33 @@ import React from 'react';
 import './style.css';
 import Select from 'react-select';
 
-const chords = [
-    { value: 'Major', label: 'Major'},
-    {value: 'Minor', label: 'Minor'},
-    {value: 'Dominant', label: 'Dominant'},
-    {value: 'Diminished', label: 'Diminished'},
-    {value: 'Augmented', label: 'Augmented'},
-    {value: 'Suspended', label: 'Suspended'}
+const genres = [
+    { value: 'Jazz', label: 'Jazz'},
+    { value: 'Classical', label: 'Classical'},
+    { value: 'Pop', label: 'Pop'},
+    { value: 'R&B', label: 'R&B'},
+    { value: 'Neo Soul', label: 'Neo Soul'},
 ]
 
-class Form extends React.Component {
+class ProgressionForm extends React.Component {
+
     state = {
         firstName: '',
         lastName: '',
-        chord: '',
-        chordName: '',
+        title: '',
+        chordProg: '',
         selectedOption: ''
     }
 
     onFormSubmit = event => {
         const {value} = this.state.selectedOption
-        console.log(value)
         event.preventDefault()
-        this.props.onSubmit(this.state.firstName, this.state.lastName, this.state.chord, this.state.chordName, value)
+        this.props.onProgSubmit(this.state.firstName, this.state.lastName, this.state.title, this.state.chordProg, value)
         this.setState({
             firstName: '',
             lastName: '',
-            chord: '',
-            chordName: '',
+            title: '',
+            chordProg: '',
             selectedOption: ''
         })
     }
@@ -41,8 +40,8 @@ class Form extends React.Component {
     render() {
         const {selectedOption} = this.state
         return (
-            <div style={{marginTop: 100}} className='ui segment chord-form'>
-                <h2 className='text-center'>Add Chord</h2>
+            <div style={{marginTop: 100}} className='ui segment progression-form'>
+                <h2 className='text-center'>Add Progression</h2>
                 <form onSubmit={this.onFormSubmit} className='ui form'>
                     <div className='field'>
                         <label>First Name</label>
@@ -53,28 +52,28 @@ class Form extends React.Component {
                         <input placeholder='Enter Your Last Name' type='text' value={this.state.lastName} onChange={(e) => this.setState({ lastName: e.target.value })} />
                     </div>
                     <div className='field'>
-                        <label>Name of Chord</label>
-                        <input placeholder='Enter Chord Name' type='text' value={this.state.chordName} onChange={(e) => this.setState({ chordName: e.target.value })} />
+                        <label>Give it a good title</label>
+                        <input placeholder='Enter a good title' type='text' value={this.state.title} onChange={(e) => this.setState({ title: e.target.value })} />
                     </div>
                     <div className='field'>
-                        <label>Notes in Chord (ex. A#5, E5, C3, D3)</label>
-                        <input placeholder="Enter Notes in chord with the octave seperated by commas (ex. E5, A3)" type='text' value={this.state.chord} onChange={(e) => this.setState({ chord: e.target.value })} />
+                        <label>Chords (enter each note seperated by a space and each chord seperated by a comma ex. (E3 B3 G3, A3 B3 D3 A3)</label>
+                        <textarea placeholder='Enter Your Progression with at least two chords' type='text' value={this.state.chordProg} onChange={(e) => this.setState({ chordProg: e.target.value })} />
                     </div>
                     <div className='field'>
-                        <label>Type of Chord</label>
+                        <label>Genre of Chord Progression</label>
                         <Select 
                             value={selectedOption}
-                            placeholder={"Select Type of Chord"}
+                            placeholder={"Select Genre of Progression"}
                             onChange={this.handleChange}
-                            options={chords}
+                            options={genres}
                         />
                     </div>
-                    <button style={{marginBottom: 10}} className='ui purple button w-100 submit-btn'>Submit</button>
+                    <button className='ui purple button w-100'>Submit</button>
+                    <p style={{color: 'red'}} className='text-center'>{this.props.message}</p>
                 </form>
-                <p style={{color: 'red'}} className='text-center'>{this.props.message}</p>
-            </div>
+            </div> 
         )
     }
 }
 
-export default Form;
+export default ProgressionForm;

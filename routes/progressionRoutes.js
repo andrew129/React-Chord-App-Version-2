@@ -3,9 +3,10 @@ const router = express.Router()
 const db = require('../models')
 
 router.post('/', (req, res) => {
-    db.Chord.create(req.body)
-        .then(dbChord => {
-            res.send(dbChord)
+    console.log(req.body)
+    db.Progression.create(req.body)
+        .then(dbProgression => {
+            res.send(dbProgression)
         })
         .catch(err => {
             console.log(err)
@@ -13,13 +14,13 @@ router.post('/', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-    db.Chord.find({})
-        .then(dbChord => {
-            res.send(dbChord)
+    db.Progression.find({})
+        .then(dbProgression => {
+            res.send(dbProgression)
         })
         .catch(err => {
             console.log(err)
         })
 })
 
-module.exports = router
+module.exports = router;
