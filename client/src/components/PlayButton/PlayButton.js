@@ -33,7 +33,7 @@ class PlayButton extends React.Component {
 
     repeat = time => {
         const chord = this.state.currentNotes[this.state.position % this.state.currentNotes.length]
-        synthA.triggerAttackRelease(chord, '4n', time)
+        synthA.triggerAttackRelease(chord, '2n', time)
         this.setState({
             position: this.state.position + 1
         })
@@ -54,15 +54,17 @@ class PlayButton extends React.Component {
             synthA.toMaster()
             Tone.Transport.start()
             this.props.activeChords.forEach(chord => {
-                // const trimmedChord = chord.trim()
                 this.state.currentNotes.push(chord.trim().split(' '))
-                // this.state.currentNotes.forEach(note => {
-                //     synthA.triggerAttackRelease(note, '4n')
-                // })
             })
             Tone.Transport.scheduleRepeat(time => {
                 this.repeat(time)
-            }, '4n')
+            }, '2n')
+            setTimeout(() => {
+                Tone.Transport.stop()
+                this.setState({
+                    playing: false
+                })
+            }, 3000)
         }
     }
 
