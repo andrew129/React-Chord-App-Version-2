@@ -3,6 +3,7 @@ import ProgressionForm from '../../ProgressionForm/ProgressionForm';
 import API from '../../../utils/api';
 import Spinner from '../../Spinner/Spinner';
 import ProgressionList from '../../ProgressionList/ProgressionList';
+import './style.css';
 
 class Progressions extends React.Component {
 
@@ -86,6 +87,16 @@ class Progressions extends React.Component {
                             onProgSubmit={this.onProgSubmit}
                             message={this.state.message} 
                         />
+                    </div>
+                    <div className='col-3'>
+                    </div>
+                </div>
+                <div className='row'>
+                    <div className='col-3'>
+                    </div>
+                    <div className='col-6 title'>
+                        <h1>Chord Progressions Gallery</h1>
+                        <p>Find the best Progression to use in your song</p>
                     </div>
                     <div className='col-3'>
                     </div>

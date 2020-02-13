@@ -166,7 +166,6 @@ class Home extends React.Component {
     };
 
     getNewChords = chordType => {
-        console.log(chordType)
         this.setState({
             loading: true,
             chords: []

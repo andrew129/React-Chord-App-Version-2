@@ -7,11 +7,33 @@
 }
 
 .play {
-    background: #03001e;  /* fallback for old browsers */
+    background: #03001e;
     background: -webkit-linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     -webkit-background-clip: text !important;
     background-clip: text;
     -webkit-text-fill-color: transparent; 
     font-size: 30px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.pause {
+    background: #03001e;
+    background: -webkit-linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    -webkit-background-clip: text !important;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.1s;
+}
+
+.play:hover {
+    transform: translateY(2px);
+}
+
+.pause:hover {
+    transform: translateY(2px);
 }
