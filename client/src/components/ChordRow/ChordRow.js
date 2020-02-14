@@ -2,7 +2,6 @@ import React from 'react';
 import Piano from '../Piano/Piano';
 
 const ChordRow = props => {
-    console.log(props)
     const chords = props.chords.map(chord => {
         return <Piano activeNotes={chord} />
     })

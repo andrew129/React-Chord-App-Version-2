@@ -22,6 +22,7 @@ const synthA = new Tone.PolySynth(9, Tone.Synth, {
 })
 
 Tone.Transport.bpm.value = 80
+Tone.Transport.loop = false
 
 class PlayButton extends React.Component {
 
@@ -40,16 +41,19 @@ class PlayButton extends React.Component {
     }
 
     handleClick = () => {
+
         if (this.state.playing) {
             this.setState({
-                playing: false
+                playing: false,
+                currentNotes: []
             })
             synthA.disconnect()
             Tone.Transport.stop()
         }
+
         else {
             this.setState({
-                playing: true
+                playing: true,
             })
             synthA.toMaster()
             Tone.Transport.start()
