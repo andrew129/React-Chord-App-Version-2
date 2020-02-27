@@ -3,7 +3,37 @@ import ProgressionForm from '../../ProgressionForm/ProgressionForm';
 import API from '../../../utils/api';
 import Spinner from '../../Spinner/Spinner';
 import ProgressionList from '../../ProgressionList/ProgressionList';
+import Select from 'react-select';
 import './style.css';
+
+const options = [
+    { value: 'Ambient Pad', label: 'Ambient Pad' },
+    { value: 'Breezy Day', label: 'Breezy Day' },
+    { value: 'Dark Day', label: 'Dark Day' },
+];
+
+
+const customStyles = {
+    control: (provided) => ({
+        ...provided,
+        marginTop: '10px',
+        marginRight: '110px',
+        width: '75%',
+        background: '#a333c8',
+        color: 'white',
+        border: 'solid 2px black',
+        cursor: 'pointer'
+    }),
+    option: (provided, state) => ({
+        ...provided,
+        background: state.isSelected ? 'red' : '',
+        cursor: 'pointer'
+    }),
+    singleValue: (provided) => ({
+        ...provided,
+        color: 'white'
+    })
+}
 
 class Progressions extends React.Component {
 
@@ -11,7 +41,9 @@ class Progressions extends React.Component {
         message: '',
         loading: false,
         loadingMessage: '',
-        progressions: []
+        progressions: [],
+        selectedOption: null,
+        selectedValue: ''
     }
 
     componentDidMount() {
@@ -76,6 +108,13 @@ class Progressions extends React.Component {
             })
     } 
 
+    handleChange = selectedOption => {
+        this.setState({ selectedOption })
+        this.setState({
+            selectedValue: selectedOption.value
+        })
+    };
+
     render() {
         return (
             <div className='container-fluid'>
@@ -96,9 +135,16 @@ class Progressions extends React.Component {
                     </div>
                     <div className='col-6 title'>
                         <h1>Chord Progressions Gallery</h1>
-                        <p>Find the best Progression to use in your song</p>
+                        <p>Find the best Progression to use in your song.  Select your favorite sound with the sound selector on the right and click the play button to hear the chord progression.</p>
                     </div>
                     <div className='col-3'>
+                        <Select 
+                            value={this.state.selectedOption}
+                            onChange={this.handleChange}
+                            options={options}
+                            styles={customStyles}
+                            placeholder={" Select Sound "}
+                        />
                     </div>
                 </div>
                 <div className='row'>
@@ -106,6 +152,7 @@ class Progressions extends React.Component {
                         <div className='col-12'>
                             <ProgressionList 
                                 progressions={this.state.progressions}
+                                soundName={this.state.selectedValue}
                             />
                         </div>
                     }

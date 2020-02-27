@@ -21,6 +21,48 @@ const synthA = new Tone.PolySynth(9, Tone.Synth, {
     },  
 })
 
+const synthB = new Tone.PolySynth(8, Tone.Synth, {
+
+    oscillator: {
+      type : 'sine',
+      modulationType : "sine",
+      modulationIndex: 3,
+      frequency : 440,
+      harmonicity : 3.4,
+    },
+    
+    portamento: 0.1,
+  
+    envelope: {
+      attack: 0.001,
+      decay: 0.5,
+      sustain: 0.1,
+      release: 0.1   
+    },
+  
+    pitchShift: {
+      pitch: -12
+    },
+})
+
+const synthC = new Tone.PolySynth(6, Tone.Synth, {
+    portamento : 0.2,
+  
+    oscillator: {
+      type: "fatcustom",
+      partials: [0.2,1,0,0.5,0.1],
+      spread: 40,
+      count: 3
+    },
+  
+    envelope: {
+      attack: 0.001,
+      decay: 1.6,
+      sustain: 0,
+      release: 1.6
+    }
+})
+
 Tone.Transport.bpm.value = 100
 
 class PlayButton extends React.Component {
@@ -31,14 +73,27 @@ class PlayButton extends React.Component {
         position: 0
     }
 
-    song = time => {
-        console.log(this.state.position)
+    playChords = time => {
         const chord = this.state.currentNotes[this.state.position]
-        synthA.triggerAttackRelease(chord, '4n', time)
-        synthA.toMaster()
         this.setState({
             position: this.state.position + 1
         })
+        if (this.props.soundName === 'Ambient Pad') {
+            synthA.toMaster()
+            synthB.disconnect()
+            synthA.triggerAttackRelease(chord, '4n', time)
+        }
+        else if (this.props.soundName === 'Breezy Day') {
+            synthB.toMaster()
+            synthA.disconnect()
+            synthB.triggerAttackRelease(chord, '4n', time)
+        }
+        else if (this.props.soundName === 'Damp Cave') {
+            synthC.toMaster()
+            synthA.disconnect()
+            synthB.disconnect()
+            synthC.triggerAttackRelease(chord, '4n', time)
+        }
         if (this.state.position === this.state.currentNotes.length + 1) {
             Tone.Transport.cancel()
             this.setState({
@@ -50,7 +105,7 @@ class PlayButton extends React.Component {
     }
 
     handleClick = () => {
-        let loop = new Tone.Loop(this.song, '1n')
+        let loop = new Tone.Loop(this.playChords, '1n')
         if (this.state.playing) {
             this.setState({
                 position: 0,
