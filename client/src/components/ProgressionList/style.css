@@ -15,8 +15,11 @@
     -webkit-text-fill-color: transparent; 
     font-size: 30px;
     cursor: pointer;
-    transition: 0.1s;
+    transition: transform 0.1s;
+    transition: background-size 0.5s ease-out;
     margin-bottom: 10px !important;
+    background-size: 300%;
+    background-position: left;
 }
 
 .pause {
@@ -33,6 +36,7 @@
 
 .play:hover {
     transform: translateY(2px);
+    background-size: 100%;
 }
 
 .pause:hover {

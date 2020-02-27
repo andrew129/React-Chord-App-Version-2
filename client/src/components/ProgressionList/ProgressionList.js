@@ -3,7 +3,6 @@ import ChordRow from '../ChordRow/ChordRow';
 import PlayButton from '../PlayButton/PlayButton';
 import './style.css';
 
-//play button pause component
 
 const ProgressionList = props => {
     console.log(props)
