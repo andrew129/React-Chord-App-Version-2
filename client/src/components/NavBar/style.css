@@ -2,21 +2,11 @@
     margin-bottom: 300px;
     background: -webkit-linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e) !important;  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e) !important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    animation: bg-animation 5s infinite alternate;
-    background-size: 150% !important;
 }
 
 .nav-link a:active {
     background: #fff !important;
 }
 
-@keyframes bg-animation {
-    0% {
-        background-position: left;
-    }
-    100% {
-        background-position: right;
-    }
-}
 
 

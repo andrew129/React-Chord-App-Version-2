@@ -27,11 +27,14 @@
     background: -webkit-linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #fdeff9, #ec38bc, #7303c0, #03001e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     -webkit-background-clip: text !important;
+    transition: transform 0.1s;
+    transition: background-size 0.5s ease-out;
     background-clip: text;
     -webkit-text-fill-color: transparent; 
     font-size: 30px;
     cursor: pointer;
     transition: 0.1s;
+    background-size: 300%;
 }
 
 .play:hover {
@@ -41,4 +44,5 @@
 
 .pause:hover {
     transform: translateY(2px);
+    background-size: 100%;
 }
