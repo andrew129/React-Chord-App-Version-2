@@ -21,7 +21,7 @@ const synthA = new Tone.PolySynth(9, Tone.Synth, {
     },  
 })
 
-Tone.Transport.bpm.value = 90
+Tone.Transport.bpm.value = 100
 
 class PlayButton extends React.Component {
 
@@ -31,49 +31,45 @@ class PlayButton extends React.Component {
         position: 0
     }
 
-    repeat = time => {
+    song = time => {
+        console.log(this.state.position)
         const chord = this.state.currentNotes[this.state.position]
-        synthA.triggerAttackRelease(chord, '1n', time)
-        if (this.state.position > this.state.currentNotes.length) {
-            Tone.Transport.pause()
-            synthA.disconnect()
+        synthA.triggerAttackRelease(chord, '4n', time)
+        synthA.toMaster()
+        this.setState({
+            position: this.state.position + 1
+        })
+        if (this.state.position === this.state.currentNotes.length + 1) {
+            Tone.Transport.cancel()
             this.setState({
                 position: 0,
-                playing: false,
-                currentNotes: []
-            })
-        }
-        else {
-            this.setState({
-                position: this.state.position + 1,
-                playing: true
+                currentNotes: [],
+                playing: false
             })
         }
     }
 
     handleClick = () => {
-        console.log(this.state.currentNotes)
+        let loop = new Tone.Loop(this.song, '1n')
         if (this.state.playing) {
             this.setState({
                 position: 0,
                 playing: false,
                 currentNotes: [],
             })
-            Tone.Transport.pause()
+            Tone.Transport.cancel()
+            loop.stop()
         }
 
         else {
             this.setState({
                 playing: true,
             })
-            synthA.toMaster()
             this.props.activeChords.forEach(chord => {
                 this.state.currentNotes.push(chord.trim().split(' '))
             })
             Tone.Transport.start()
-            Tone.Transport.scheduleRepeat(time => {
-                this.repeat(time)
-            }, '1n')
+            loop.start()
         }
     }
 
