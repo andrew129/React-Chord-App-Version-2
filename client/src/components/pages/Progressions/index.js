@@ -9,7 +9,7 @@ import './style.css';
 const options = [
     { value: 'Ambient Pad', label: 'Ambient Pad' },
     { value: 'Breezy Day', label: 'Breezy Day' },
-    { value: 'Dark Day', label: 'Dark Day' },
+    { value: 'Damp Cave', label: 'Damp Cave' },
 ];
 
 
