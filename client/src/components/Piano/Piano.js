@@ -68,6 +68,17 @@ class Piano extends React.Component {
             synthB.toMaster()
             synthB.triggerAttackRelease(this.props.activeNotes, "4n")
         }
+        if (soundName === 'piano') {
+            this.props.activeNotes.forEach(note => {
+                const player = new Tone.Player({
+                    "url": `../../../sounds/${note}.wav`,
+                    "autostart": true,
+                    "loop": false,
+                    "loopEnd": '1n'
+                })
+                player.toMaster()
+            })
+        }
     }
 
     activate = noteName => {

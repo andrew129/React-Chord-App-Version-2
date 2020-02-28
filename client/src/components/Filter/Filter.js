@@ -44,11 +44,9 @@ class Filter extends React.Component {
     this.setState({
       selectedChord,
     })
-    console.log(this.state.selectedChord)
     this.setState({
       selectedChordType: selectedChord.value
     })
-    console.log(this.state.selectedChordType)
     this.props.getNewChords(selectedChord.value)
   }
 
