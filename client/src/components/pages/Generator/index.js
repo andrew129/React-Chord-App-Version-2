@@ -1,6 +1,5 @@
 import React from 'react';
 import Chord from '../../ChordCard/ChordCard';
-// import API from '../../../utils/api';
 import Spinner from '../../Spinner/Spinner';
 import Select from 'react-select';
 import './style.css';

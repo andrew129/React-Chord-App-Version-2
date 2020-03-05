@@ -3,7 +3,7 @@ import Piano from '../Piano/Piano';
 
 const ChordRow = props => {
     const chords = props.chords.map(chord => {
-        return <Piano activeNotes={chord} />
+        return <Piano key={chord._id} activeNotes={chord} />
     })
     return (
         <div className='Chord-row'>

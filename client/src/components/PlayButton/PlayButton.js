@@ -70,10 +70,11 @@ class PlayButton extends React.Component {
     state = {
         playing: false,
         currentNotes: [],
-        position: 0
+        position: 0,
     }
 
     playChords = time => {
+        console.log(this.state.currentNotes)
         const chord = this.state.currentNotes[this.state.position]
         this.setState({
             position: this.state.position + 1
@@ -94,7 +95,21 @@ class PlayButton extends React.Component {
             synthB.disconnect()
             synthC.triggerAttackRelease(chord, '4n', time)
         }
-        if (this.state.position === this.state.currentNotes.length + 1) {
+        else if (this.props.soundName === 'Piano') {
+            synthC.disconnect()
+            synthB.disconnect()
+            synthA.disconnect()
+            chord.forEach(note => {
+                const player = new Tone.Player({
+                    "url": `../../../sounds/${note}.wav`,
+                    "autostart": true,
+                    "loop": false,
+                    "loopEnd": time
+                })
+                player.toMaster()
+            })
+        }
+        if (this.state.position === this.state.currentNotes.length) {
             Tone.Transport.cancel()
             this.setState({
                 position: 0,

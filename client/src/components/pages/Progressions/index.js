@@ -10,6 +10,15 @@ const options = [
     { value: 'Ambient Pad', label: 'Ambient Pad' },
     { value: 'Breezy Day', label: 'Breezy Day' },
     { value: 'Damp Cave', label: 'Damp Cave' },
+    { value: 'Piano', label: 'Piano' }
+];
+
+const optionsTwo = [
+    { value: 'Jazz', label: 'Jazz' },
+    { value: 'Classical', label: 'Classical' },
+    { value: 'R&B', label: 'R&B' },
+    { value: 'Neo Soul', label: 'Neo Soul' },
+    { value: 'Pop', label: 'Pop' },
 ];
 
 
@@ -43,7 +52,9 @@ class Progressions extends React.Component {
         loadingMessage: '',
         progressions: [],
         selectedOption: null,
-        selectedValue: ''
+        selectedValue: '',
+        selectedOptionTwo: null,
+        selectedValueTwo: ''
     }
 
     componentDidMount() {
@@ -52,13 +63,17 @@ class Progressions extends React.Component {
 
     onProgSubmit = (firstname, lastname, title, chordProg, genre) => {
 
+        const chords = chordProg.split(',')
+        let trimmedChords = chords.map(note => {
+            return note.trim().replace(/C#|c#|DB/g, 'Db').replace(/D#|d#|Eb/g, 'Eb').replace(/F#|f#|GB/g, 'Gb').replace(/G#|g#|AB/g, 'Ab').replace(/A#|a#|BB/g, 'Bb')
+        })
         const upperFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1) 
         const upperLastName = lastname.charAt(0).toUpperCase() + lastname.slice(1)
 
         const data = {
            author: upperFirstName + " " + upperLastName,
            title: title,
-           currentChords: chordProg.split(','),
+           currentChords: trimmedChords,
            genre: genre
         }
 
@@ -132,6 +147,13 @@ class Progressions extends React.Component {
                 </div>
                 <div className='row'>
                     <div className='col-3'>
+                        <Select 
+                            value={this.state.selectedOption}
+                            onChange={this.handleChange}
+                            options={optionsTwo}
+                            styles={customStyles}
+                            placeholder={" Filter By Genre "}
+                        />
                     </div>
                     <div className='col-6 title'>
                         <h1>Chord Progressions Gallery</h1>
