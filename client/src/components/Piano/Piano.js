@@ -12,6 +12,7 @@ class Piano extends React.Component {
     }
 
     handleClick = () => {
+        Tone.Transport.bpm.value = 120
         this.setState({
             colorBack: 'red'
         })
@@ -21,6 +22,12 @@ class Piano extends React.Component {
               type : "sine",
               partials : [3, 5, 6, 7]
             },
+
+            "phaser": {
+                "frequency" : 200,
+                "octaves" : 5,
+                "baseFrequency" : 1000
+            },
           
             "envelope" : {
               "attack" : 1,
@@ -29,7 +36,7 @@ class Piano extends React.Component {
               "release" : 4,
             },
           
-            "portamento" : 0.03,
+            "portamento" : 1,
           
             "pitchShift" : {
               "pitch" : -24

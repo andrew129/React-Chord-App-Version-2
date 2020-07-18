@@ -56,8 +56,36 @@ class Home extends React.Component {
         this.getChords()
     }
 
+    checkIfInDatabase = (databaseArr, newArr) => {
+        let commonNoteCount = 0
+        
+        for (let i = 0; i < databaseArr.length; i++) {
+            if (databaseArr[i].currentNotes.length === newArr.length) {
+                for (let j = 0; j < databaseArr[i].currentNotes.length; j++) {
+                    if (newArr.includes(databaseArr[i].currentNotes[j])) {
+                        commonNoteCount++
+                        if (commonNoteCount === newArr.length) {
+                            return true
+                        }
+                    }
+                    else {
+                        commonNoteCount = 0
+                        continue
+                    }
+                }
+            }
+        }
+    }
+
     onSearchSubmit = (firstname, lastname, chord, chordName, chordType) => {
         this.setState({ message: '' })
+
+
+        // if (commonNoteCount === this.state.chords.length && this.state.chords.length === splitStr.length) {
+        //     console.log('already in database')
+        // }
+
+
         if (firstname && lastname && chord && chordName && chordType && /,\s*/.test(chord) && /(.*[3-6]){2}/i.test(chord) && chord.length >= 5) {
             const upperFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1) //first character in string to uppercase//
             const upperLastName = lastname.charAt(0).toUpperCase() + lastname.slice(1)
@@ -73,7 +101,12 @@ class Home extends React.Component {
                 type: chordType
             }
 
-            API.saveChord(newChord)
+            if (this.checkIfInDatabase(this.state.chords, trimmedArr)) {
+                this.setState({ message: 'Chord already exists in database, try submitting a different chord' })
+            }
+
+            else {
+                API.saveChord(newChord)
                 .then(res => {
                     console.log(res)
                     this.setState({
@@ -88,22 +121,16 @@ class Home extends React.Component {
                         })
                     }, 2000)
                 })
-                // .catch(err => {
-                //     this.setState({
-                //         loading: false,
-                //         message: 'Error Unique: Chord Already Exists in Database'
-                //     })
-                //     console.log(err)
-                // })
+            }
         }
         
-        else if (firstname || lastname || chord || chordName || chordType === '') {
+        else if (firstname === '' || lastname === '' || chord === '' || chordName === '' || chordType === '') {
             this.setState({
                 message: 'Error Submitting: Please Fill out all Fields'
             })
         }
 
-        else if (firstname && lastname && chord && chordName && chordType && chord.length < 5) {
+        else if (chord.length < 5) {
             this.setState({
                 message: 'Error Submitting: Notes in Chords field must be at least 5 Characters long'
             })
@@ -115,13 +142,33 @@ class Home extends React.Component {
             })
         }
 
-        else if (firstname && lastname && chord && chordName && chordType && chord.length >= 5 && !/(.*[3-6]){2}/i.test(chord)) {
+        else if (firstname && lastname && chord && chordName && chordType && chord.length >= 5 && !/(.*[3-5]){2}/i.test(chord)) {
             this.setState({
                 message: 'Error Submitting: There must be at least two numbers and they must be between 3 and 6 (ex. A#5, D#3...)'
             })
         }
 
     }
+
+    // check = (arr, str) => {
+    //     let splitStr = str.split(',')
+    //     let trueCount = 0
+
+    //     for (let i = 0; i < arr.length; i++) {
+    //         if (arr[i].currentNotes[] === splitStr[i]) {
+    //             trueCount++
+    //         }
+    //         else {
+    //             break
+    //         }
+    //     }
+    //     if (trueCount === arr.length) {
+    //         return true
+    //     }
+    //     else {
+    //         return false
+    //     }
+    // }
 
     getChords = () => {
         this.setState({

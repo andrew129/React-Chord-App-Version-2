@@ -74,6 +74,7 @@ class PlayButton extends React.Component {
     }
 
     playChords = time => {
+        console.log(time)
         console.log(this.state.currentNotes)
         const chord = this.state.currentNotes[this.state.position]
         this.setState({

@@ -9,6 +9,7 @@ router.post('/', (req, res) => {
         })
         .catch(err => {
             console.log(err)
+            res.json(err)
         })
 })
 
@@ -19,6 +20,7 @@ router.get('/', (req, res) => {
         })
         .catch(err => {
             console.log(err)
+            res.json(err)
         })
 })
 
