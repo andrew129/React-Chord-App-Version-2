@@ -8,18 +8,14 @@ export default class LoginForm extends React.Component {
         name: ''
     }
 
-    componentDidMount() {
-        this.getUser()
-    }
-
-    getUser = () => {
-        API.getUserInfo().then(res => {
-            console.log(res)
-            if (res.data) {
-                this.setState({ name: res.data.first_name })
-            }
-        })
-    }
+    // getUser = () => {
+    //     API.getUserInfo().then(res => {
+    //         console.log(res)
+    //         if (res.data) {
+    //             this.setState({ name: res.data.first_name })
+    //         }
+    //     })
+    // }
 
     handleSubmit = e => {
         e.preventDefault()
@@ -31,6 +27,7 @@ export default class LoginForm extends React.Component {
 
         API.signInUser(userObj).then(res => {
             console.log(res)
+            window.location.href = '/'
         })
     }
 
@@ -52,7 +49,7 @@ export default class LoginForm extends React.Component {
                                 <label>Password</label>
                                 <input value={this.state.password} onChange={(e) => this.setState({password: e.target.value})} placeholder="Enter Password" />
                             </div>
-                            <button type="submit" class="ui basic purple button w-100">Register</button>
+                            <button type="submit" class="ui basic purple button w-100">Login</button>
                             <a href='/user/signup' className='nav-link'>Don't have an account, sign up</a>
                         </form>
                     </div>

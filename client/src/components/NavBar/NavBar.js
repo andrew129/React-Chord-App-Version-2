@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
 import API from '../../utils/api';
+import { thistle } from 'color-name';
 
 class NavBar extends React.Component {
 
@@ -46,10 +47,16 @@ class NavBar extends React.Component {
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/chord-progressions' className='item'>Chord Progressions</a>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/generator' className='item'>Chord Generator</a>
                 {(this.state.user) &&
-                    <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className='item right'><button onClick={this.handleLogout} className='ui basic purple button inverted'>Logout</button></a>
+                    <div className='item right' style={{padding: 0}}>
+                        <p style={{color: 'white', padding: 0, margin: 0, fontSize: 15}} className='item right'>{this.state.user.first_name + ' ' + this.state.user.last_name}</p>
+                        <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className='item right'><button onClick={this.handleLogout} className='ui basic purple button inverted'>Logout</button></a>
+                    </div>
                 }
                 {(!this.state.user) &&
-                    <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/user/signup' className='item right'>Login/Register</a>
+                    <div className='item right' style={{padding: 0}}>
+                        <a style={{textShadow: '0px 0px 1px #fff', padding: 0}} className='nav-link' href='/user/login' className='item right'><button className='ui purple basic inverted button circular'>Login</button></a>
+                        <a style={{ textShadow: '0px 0px 1px #fff', padding: 10}} className='nav-link' href='/user/signup' className='item right'><button className='ui purple basic inverted button circular'>Register</button></a>
+                    </div>
                 }
             </div>
         )
