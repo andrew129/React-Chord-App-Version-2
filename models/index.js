@@ -1,4 +1,5 @@
 module.exports = {
     Chord: require('./Chord'),
-    Progression: require('./Progression')
+    Progression: require('./Progression'),
+    User: require('./User')
 }

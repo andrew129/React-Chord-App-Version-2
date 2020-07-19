@@ -22,6 +22,7 @@ class NavBar extends React.Component {
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className='item'>Chords</a>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/chord-progressions' className='item'>Chord Progressions</a>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/generator' className='item'>Chord Generator</a>
+                <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/user/signup' className='item right'>Login/Signup</a>
             </div>
         )
     }

@@ -17,5 +17,16 @@ export default {
 
     getProgressions: function() {
         return axios.get('/api/progressions')
+    },
+
+    registerUser: function(data) {
+        return axios.post('/api/users/signup', data)
+    },
+
+    signInUser: function(data) {
+        return axios.post('/api/users/login', data)
+    },
+    getUserInfo: function() {
+        return axios.get('/api/users/info')
     }
 }
