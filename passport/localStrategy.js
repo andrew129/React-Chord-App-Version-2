@@ -17,10 +17,10 @@ const strategy = new LocalStrategy(
 				return done(null, false, { message: 'Incorrect email' })
       }
       
-      if (!user.checkPassword(password)) {
-        console.log('no match')
-				return done(null, false, { message: 'Incorrect password' })
-			}
+      	if (!user.checkPassword(password)) {
+        	console.log('no match')
+			return done(null, false, { message: 'Incorrect password' })
+		}
 	
       else {
         console.log('success')

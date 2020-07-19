@@ -150,26 +150,6 @@ class Home extends React.Component {
 
     }
 
-    // check = (arr, str) => {
-    //     let splitStr = str.split(',')
-    //     let trueCount = 0
-
-    //     for (let i = 0; i < arr.length; i++) {
-    //         if (arr[i].currentNotes[] === splitStr[i]) {
-    //             trueCount++
-    //         }
-    //         else {
-    //             break
-    //         }
-    //     }
-    //     if (trueCount === arr.length) {
-    //         return true
-    //     }
-    //     else {
-    //         return false
-    //     }
-    // }
-
     getChords = () => {
         this.setState({
             loading: true,

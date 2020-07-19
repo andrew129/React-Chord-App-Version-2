@@ -33,12 +33,14 @@ router.get("/logout", function(req, res) {
 });
 
 router.get('/info', function(req, res) {
+    console.log(req.user)
     if (req.user) {
         db.User.findOne(
             {
-                _id: req.user.id
+                _id: req.user._id
             }
         ).then(dbUser => {
+            console.log(dbUser)
             res.json(dbUser)
         })
     }

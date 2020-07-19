@@ -8,6 +8,19 @@ export default class LoginForm extends React.Component {
         name: ''
     }
 
+    componentDidMount() {
+        this.getUser()
+    }
+
+    getUser = () => {
+        API.getUserInfo().then(res => {
+            console.log(res)
+            if (res.data) {
+                this.setState({ name: res.data.first_name })
+            }
+        })
+    }
+
     handleSubmit = e => {
         e.preventDefault()
 
@@ -18,9 +31,6 @@ export default class LoginForm extends React.Component {
 
         API.signInUser(userObj).then(res => {
             console.log(res)
-            API.getUserInfo().then(res => {
-                console.log(res)
-            })
         })
     }
 
