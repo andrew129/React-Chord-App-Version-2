@@ -6,15 +6,37 @@ import Generate from './components/pages/Generator';
 import Progressions from './components/pages/Progressions';
 import SignupForm from './components/SignupForm/SignupForm';
 import LoginForm from './components/LoginForm/LoginForm';
+import API from './utils/api';
 import "./App.css";
 
 class App extends Component {
+
+
+  state = {
+    user: null
+  }
+
+  componentDidMount() {
+    this.getUser()
+  }
+
+  getUser = () => {
+    API.getUserInfo().then(res => {
+        if (res.data) {
+            this.setState({user: res.data})
+        }
+        else {
+            this.setState({user: null})
+        }
+    })
+  }
+
   render() {
     return (
       <div>
-        <NavBar/>
+        <NavBar user={this.state.user} />
         <Router>
-          <Route exact path='/' component={Home} />
+          <Route exact path='/' render={props => <Home {...props} user={this.state.user} />} />
           <Route exact path='/generator' component={Generate} />
           <Route exact path='/chord-progressions' component={Progressions} />
           <Route exact path='/user/signup' component={SignupForm} />

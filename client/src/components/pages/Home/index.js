@@ -223,6 +223,7 @@ class Home extends React.Component {
     }
 
     render() {
+        console.log(this.props.user)
         const indexOfLast = this.state.currentPage * this.state.chordsPerPage
         const indexOfFirst = indexOfLast - this.state.chordsPerPage
         const currentChords = this.state.chords.slice(indexOfFirst, indexOfLast)
@@ -233,10 +234,18 @@ class Home extends React.Component {
                     <div className='col-3'>
                     </div>
                     <div className='col-6'>
-                        <Form
-                            onSubmit={this.onSearchSubmit}
-                            message={this.state.message}
-                        />
+                        {(this.props.user) &&
+                            <Form
+                                onSubmit={this.onSearchSubmit}
+                                message={this.state.message}
+                            />
+                        }
+                        {(!this.props.user) &&
+                            <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: 150}}>
+                                <h3 style={{marginBottom: 40}} className='header'>Interested in submitting chords, Sign up using the button below</h3>
+                                <a href='user/signup'><button className='ui red button'>Register</button></a>
+                            </div>
+                        }
                     </div>
                     <div className='col-3'>
                     </div>
@@ -265,7 +274,7 @@ class Home extends React.Component {
                 <div className='row'>
                     {(!this.state.loading) &&
                         <div className='col-12'>
-                            <ChordList soundName={this.state.selectedValue} chords={currentChords} />
+                            <ChordList soundName={this.state.selectedValue} chords={currentChords} user={this.props.user} />
                         </div>
                     }
                     {(this.state.loading) &&

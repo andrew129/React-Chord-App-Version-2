@@ -31,5 +31,8 @@ export default {
     },
     logoutUser: function() {
         return axios.get('/api/users/logout')
+    },
+    updateUser: function(id) {
+        return axios.put('/api/users/addChord/' + id)
     }
 }

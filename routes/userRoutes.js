@@ -52,7 +52,10 @@ router.put('/addChord/:id', function(req, res) {
             _id: req.params.id
         } 
     ).then(dbChord => {
-        console.log(dbChord)
+        db.User.findOneAndUpdate({ _id: req.user.id }, { $push: { savedChords: dbChord }}, { new: true })
+        .then(dbUser => {
+            res.json(dbUser)
+        })
     })
 })
 

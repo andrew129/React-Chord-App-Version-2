@@ -35,7 +35,7 @@ export default class SignupForm extends React.Component {
                     <div style={{marginTop: 220}} class='col-md-6 col-12'>
                         <div style={{marginBottom: 40}} className='text-center'>
                             <h1 style={{marginBottom: 10, fontSize: 35}} className='ui header text-center'>Sign Up</h1>
-                            <p>Start Submitting Your Chords</p>
+                            <p>Start Submitting Your Chords and saving your favorites</p>
                         </div>
                         <form onSubmit={this.handleSubmit} class="ui form">
                             <div class="field">
