@@ -1,12 +1,19 @@
 import React from 'react';
 import './style.css';
 import API from '../../utils/api';
+import { Dropdown } from 'semantic-ui-react'
+
 
 class NavBar extends React.Component {
 
     state = {
         currentClass: 'item',
+        isOpen: false
     }
+
+    // toggleOpen = () => {
+    //     this.setState({ isOpen: !this.state.isOpen })
+    // }
 
     handleLogout = () => {
         API.logoutUser().then(function(res) {
@@ -25,7 +32,11 @@ class NavBar extends React.Component {
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/generator' className='item'>Chord Generator</a>
                 {(this.props.user) &&
                     <div className='item right' style={{padding: 0}}>
-                        <p style={{color: 'white', padding: 0, margin: 0, fontSize: 15}} className='item right'>{this.props.user.first_name + ' ' + this.props.user.last_name}</p>
+                        <Dropdown style={{color: 'white', padding: 0}} className='link item' text={this.props.user.first_name + ' ' + this.props.user.last_name}>
+                            <Dropdown.Menu>
+                                <Dropdown.Item className='link' text='My Profile' href={'user/profile/' + this.props.user.first_name + '-' + this.props.user.last_name} />
+                            </Dropdown.Menu>
+                        </Dropdown>
                         <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className='item right'><button onClick={this.handleLogout} className='ui basic purple button inverted'>Logout</button></a>
                     </div>
                 }

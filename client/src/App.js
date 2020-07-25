@@ -6,6 +6,7 @@ import Generate from './components/pages/Generator';
 import Progressions from './components/pages/Progressions';
 import SignupForm from './components/SignupForm/SignupForm';
 import LoginForm from './components/LoginForm/LoginForm';
+import Profile from './components/pages/UserProfile';
 import API from './utils/api';
 import "./App.css";
 
@@ -41,6 +42,7 @@ class App extends Component {
           <Route exact path='/chord-progressions' component={Progressions} />
           <Route exact path='/user/signup' component={SignupForm} />
           <Route exact path='/user/login' component={LoginForm} />
+          <Route exact path='/user/profile/:name' render={props => <Profile {...props} user={this.state.user} />} />
         </Router>
       </div>
     );

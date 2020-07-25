@@ -223,7 +223,6 @@ class Home extends React.Component {
     }
 
     render() {
-        console.log(this.props.user)
         const indexOfLast = this.state.currentPage * this.state.chordsPerPage
         const indexOfFirst = indexOfLast - this.state.chordsPerPage
         const currentChords = this.state.chords.slice(indexOfFirst, indexOfLast)
