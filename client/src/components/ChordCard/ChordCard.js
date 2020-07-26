@@ -13,7 +13,11 @@ const ChordCard = props => {
     }
 
     const deleteFromProfile = e => {
-        
+        console.log(e.target.id)
+        API.deleteFromUserProfile(e.target.id).then(res => {
+            console.log(res)
+            window.location.reload()
+        })
     }
 
     return (

@@ -6,7 +6,7 @@ export default class UserProfile extends React.Component {
     state = { activeItem: 'home', chords: [], showChords: false }
 
     handleItemClick = (e, { name }) => {
-        this.setState({ activeItem: name,  chords: this.props.user.savedChords, showChords: true })
+        this.setState({ activeItem: name,  chords: this.props.user.savedChords })
     } 
 
     render() {
@@ -30,7 +30,7 @@ export default class UserProfile extends React.Component {
                             onClick={this.handleItemClick}
                         />
                     </Menu>
-                    <ChordList profile={true} chords={this.state.chords} />
+                    <ChordList profile={true} chords={this.state.chords} displayType='beginning' />
                 </div>
             }
             </div>

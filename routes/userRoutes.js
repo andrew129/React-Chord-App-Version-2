@@ -4,11 +4,9 @@ const passport = require('../passport/index')
 const db = require('../models')
 
 router.post("/login",  function (req, res, next) {
-    console.log('routes/user.js, login, req.body: ');
-    console.log(req.body)
     next()
 }, passport.authenticate("local", { successRedirect: '/' }), (req, res) => {
-    console.log("line 11", req)
+
 });
 
 router.post('/signup', function(req, res) {
@@ -47,6 +45,7 @@ router.get('/info', function(req, res) {
 })
 
 router.put('/addChord/:id', function(req, res) {
+    console.log(req.user)
     db.Chord.findOne(
         {
             _id: req.params.id
@@ -57,6 +56,21 @@ router.put('/addChord/:id', function(req, res) {
             res.json(dbUser)
         })
     })
+})
+
+router.put('/removeChord/:id', function(req, res) {
+    db.Chord.findOne(
+        {
+            _id: req.params.id
+        }
+    ).then(dbChord => {
+        db.User.findOneAndUpdate({ _id: req.user.id }, { $pull: { savedChords: dbChord } })
+        .then(dbUser => {
+            console.log(dbUser)
+            res.json(dbUser)
+        })
+    })
+
 })
 
 module.exports = router;

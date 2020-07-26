@@ -34,5 +34,8 @@ export default {
     },
     updateUser: function(id) {
         return axios.put('/api/users/addChord/' + id)
+    },
+    deleteFromUserProfile: function(id) {
+        return axios.put('/api/users/removeChord/' + id)
     }
 }

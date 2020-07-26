@@ -8,7 +8,7 @@ const ChordList = props => {
         return <ChordCard key={chord._id} profile={props.profile} id={chord._id} soundName={props.soundName} chordName={chord.chordName} author={chord.author} activeNotes={chord.currentNotes} user={props.user}/>
     })
     return (
-        <div className='chord-list'>
+        <div className={props.displayType === "beginning" ?  "chord-list-start": "chord-list"}>
             {chords}
         </div>
     )
