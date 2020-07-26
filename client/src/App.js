@@ -24,10 +24,10 @@ class App extends Component {
   getUser = () => {
     API.getUserInfo().then(res => {
         if (res.data) {
-            this.setState({user: res.data})
+            this.setState({ user: res.data })
         }
         else {
-            this.setState({user: null})
+            this.setState({ user: null })
         }
     })
   }
