@@ -2,15 +2,11 @@ import React from 'react';
 import Piano from '../Piano/Piano';
 import './style.css';
 import API from '../../utils/api';
+import DisplayModal from '../Modal/Modal';
 // show modal after adding chord to profile
 const ChordCard = props => {
-    console.log(props)
 
-    const handleClick = e => {
-        API.updateUser(e.target.id).then(res => {
-            console.log(res)
-        })
-    }
+    const [showModal, setShowModal] = React.useState(false)
 
     const deleteFromProfile = e => {
         console.log(e.target.id)
@@ -26,7 +22,7 @@ const ChordCard = props => {
             <Piano soundName={props.soundName} activeNotes={props.activeNotes} />
             <p style={{marginTop: 6, fontWeight: 500}}>Added by: {props.author}</p>
             {(props.user && !props.profile) &&
-                <button key={props.id} id={props.id} onClick={handleClick} className='ui purple basic button'>Save To Profile</button>
+                <DisplayModal key={props.id} id={props.id} />
             }
             {(!props.user && !props.profile) &&
                 <a href='/user/signup'><button className='ui purple basic button'>Save To Profile</button></a>
