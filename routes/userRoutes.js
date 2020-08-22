@@ -6,7 +6,6 @@ const db = require('../models')
 router.post("/login",  function (req, res, next) {
     next()
 }, passport.authenticate("local", { successRedirect: '/' }), (req, res) => {
-
 });
 
 router.post('/signup', function(req, res) {

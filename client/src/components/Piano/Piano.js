@@ -6,16 +6,14 @@ import Tone from 'tone';
 class Piano extends React.Component {
 
     state = {
-        colorBack: 'none',
+        colorBack: false,
         blackKeys: ['Db3', 'Eb3', 'Gb3', 'Ab3', 'Bb3', 'Db4', 'Eb4', 'Gb4', 'Ab4', 'Bb4', 'Db5', 'Eb5', 'Gb5', 'Ab5', 'Bb5'],
         whiteKeys: ['C3', 'D3', 'E3', 'F3', 'G3', 'A3', 'B3', 'C4', 'D4', 'E4', 'F4', 'G4', 'A4', 'B4', 'C5', 'D5', 'E5', 'F5', 'G5', 'A5', 'B5']
     }
 
     handleClick = () => {
+        this.setState({colorBack: true})
         Tone.Transport.bpm.value = 120
-        this.setState({
-            colorBack: 'red'
-        })
         const soundName = this.props.soundName
         const synthA = new Tone.PolySynth(8, Tone.Synth, {
             oscillator : {
@@ -69,11 +67,13 @@ class Piano extends React.Component {
             synthA.toMaster()
             synthB.disconnect()
             synthA.triggerAttackRelease(this.props.activeNotes, "4n")
+            setTimeout(() => this.setState({colorBack: false}), 1900)
         }
         if (soundName === 'Breezy Day') {
             synthA.disconnect()
             synthB.toMaster()
             synthB.triggerAttackRelease(this.props.activeNotes, "4n")
+            setTimeout(() => this.setState({colorBack: false}), 1900)
         }
         if (soundName === 'piano') {
             this.props.activeNotes.forEach(note => {
@@ -81,29 +81,34 @@ class Piano extends React.Component {
                     "url": `../../../sounds/${note}.wav`,
                     "autostart": true,
                     "loop": false,
-                    "loopEnd": '1n'
+                    "volume": 4,
                 })
                 player.toMaster()
             })
+            setTimeout(() => this.setState({colorBack: false}), 2500)
         }
     }
 
     activate = noteName => {
-        if (this.props.activeNotes.includes(noteName)) {
+        if (this.props.activeNotes.includes(noteName) && !this.state.colorBack) {
             return 'red'
         }
-        else if (this.state.blackKeys.includes(noteName) && !this.props.activeNotes.includes(noteName) && !this.state.whiteKeys.includes(noteName)) {
+        else if (this.state.blackKeys.includes(noteName) && !this.props.activeNotes.includes(noteName) && !this.state.whiteKeys.includes(noteName) && !this.state.colorBack) {
             return 'linear-gradient(#000000, #303030)'
         }
-        else if (!this.state.blackKeys.includes(noteName) && !this.props.activeNotes.includes(noteName) && this.state.whiteKeys.includes(noteName)) {
+        else if (!this.state.blackKeys.includes(noteName) && !this.props.activeNotes.includes(noteName) && this.state.whiteKeys.includes(noteName) && !this.state.colorBack) {
             return 'white'
+        }
+        else if (this.state.whiteKeys.includes(noteName) && !this.state.blackKeys.includes(noteName) && this.state.colorBack && !this.props.activeNotes.includes(noteName)) {
+            return '#A8A8A8'
         }
     }
 
 
+
     render() {
         return (
-            <div onClick={this.handleClick} style={{cursor: 'pointer', backgroundColor: `${this.state.colorBack}`}} className="piano">
+            <div onClick={this.handleClick} style={{cursor: 'pointer'}} className="piano">
                 <div style={{backgroundColor: `${this.activate('C3')}`}} className="white-key C3-key"></div>
                 <div style={{background: `${this.activate('Db3')}`}} className="black-key Db3-key"></div>
                 <div style={{backgroundColor: `${this.activate('D3')}`}} className="white-key D3-key"></div>

@@ -8,7 +8,8 @@ class NavBar extends React.Component {
 
     state = {
         currentClass: 'item',
-        isOpen: false
+        isOpen: false,
+        currentURL: ''
     }
 
     // toggleOpen = () => {
@@ -21,13 +22,18 @@ class NavBar extends React.Component {
         })
     }
 
+    handleClick = (e) => {
+        console.log(e.target)
+    }
+
     render() {
+        // const active = event.target.href === window.location.href ? 'active' : ''
         return (
             <div style={{borderBottom: 'solid 2px black', borderRadius: 6 }} className="ui top fixed menu borderless">
                 <div className='header item'>
                     <a className='nav-link hover' style={{padding: 5}} href='/'><h4 className='chord-fact' style={{textShadow: '2px 6px 7px black, 4px -6px 7px black', color: 'black'}}>Chord Factory</h4></a>
                 </div>
-                <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className='item active'>Chords</a>
+                <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className={`item`}>Chords</a>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/chord-progressions' className='item'>Chord Progressions</a>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/generator' className='item'>Chord Generator</a>
                 {(this.props.user) &&
