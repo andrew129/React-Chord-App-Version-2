@@ -1,20 +1,27 @@
 import React from 'react';
 import './style.css';
 import API from '../../utils/api';
-import { Dropdown } from 'semantic-ui-react'
-
+import { Dropdown } from 'semantic-ui-react';
+import { Search } from 'semantic-ui-react';
 
 class NavBar extends React.Component {
 
     state = {
         currentClass: 'item',
         isOpen: false,
-        currentURL: ''
+        currentURL: '',
+        userSearched: '',
+        users: [],
+        typing: false
     }
 
-    // toggleOpen = () => {
-    //     this.setState({ isOpen: !this.state.isOpen })
-    // }
+    componentDidMount() {
+        this.getUsers()
+    }
+
+    getUsers = () => {
+        API.getUsers().then(res => this.setState({users: res.data}))
+    }
 
     handleLogout = () => {
         API.logoutUser().then(function(res) {
@@ -26,16 +33,36 @@ class NavBar extends React.Component {
         console.log(e.target)
     }
 
+    filterSearches = e => {
+        // add callback to use the updated state immediately
+        this.setState({userSearched: e.target.value, typing: true}, () => {
+            if (this.state.userSearched === '') {
+                this.getUsers()
+                this.setState({typing: false})
+            }
+            const filteredUsers = this.state.users.filter(user => user.first_name.slice(0, this.state.userSearched.length).toLowerCase() === this.state.userSearched.toLowerCase())
+            this.setState({users: filteredUsers})
+            console.log(this.state.users)
+        })
+        // onclick find user by id send to profile
+    }
+
     render() {
-        // const active = event.target.href === window.location.href ? 'active' : ''
         return (
-            <div style={{borderBottom: 'solid 2px black', borderRadius: 6 }} className="ui top fixed menu borderless">
+            <React.Fragment>
+            <div style={{borderBottom: 'solid 2px black', borderRadius: 6}} className="ui top fixed menu borderless">
                 <div className='header item'>
                     <a className='nav-link hover' style={{padding: 5}} href='/'><h4 className='chord-fact' style={{textShadow: '2px 6px 7px black, 4px -6px 7px black', color: 'black'}}>Chord Factory</h4></a>
                 </div>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className={`item`}>Chords</a>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/chord-progressions' className='item'>Chord Progressions</a>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/generator' className='item'>Chord Generator</a>
+                <div style={{width: '25%'}} class="ui right aligned category search item">
+                    <div onChange={this.filterSearches} value={this.state.userSearched} style={{border: 'solid white 1px', padding: '10px', color: 'white'}} class="ui transparent icon input circular">
+                        <input class="prompt" type="text" placeholder="Search Users..." />
+                        <i style={{marginRight: 10, borderRadius: '100% !important'}} class="search link icon"></i>
+                    </div>
+                </div>
                 {(this.props.user) &&
                     <div className='item right' style={{padding: 0}}>
                         <Dropdown style={{color: 'white', padding: 0}} className='link item' text={this.props.user.first_name + ' ' + this.props.user.last_name}>
@@ -53,6 +80,29 @@ class NavBar extends React.Component {
                     </div>
                 }
             </div>
+            <div className='item right' style={{position: 'relative'}}>
+            <Search
+                onSearchChange={this.filterSearches}
+                results={this.state.users}
+                value={this.state.userSearched}
+                type='text'
+            />
+            {(this.state.typing) &&
+                <div class="results">
+                    {(this.state.users.length === 0) && 
+                        <h5 class='ui header'>No Results to Show</h5>
+                    }
+                    {(this.state.users.length > 0 && this.state.userSearched !== '') &&
+                        <React.Fragment>
+                            {this.state.users.map((user, index) => (
+                                <button className={`ui basic ${index === this.state.users.length - 1 ? '' : 'mb-3'} button w-100 ${index % 2 === 0 ? 'purple' : 'red'}`}>{user.first_name}</button>
+                            ))}
+                        </React.Fragment>
+                    }
+                </div>
+            }
+            </div>
+            </ React.Fragment >
         )
     }
     

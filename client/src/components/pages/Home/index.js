@@ -80,12 +80,6 @@ class Home extends React.Component {
     onSearchSubmit = (firstname, lastname, chord, chordName, chordType) => {
         this.setState({ message: '' })
 
-
-        // if (commonNoteCount === this.state.chords.length && this.state.chords.length === splitStr.length) {
-        //     console.log('already in database')
-        // }
-
-
         if (firstname && lastname && chord && chordName && chordType && /,\s*/.test(chord) && /(.*[3-6]){2}/i.test(chord) && chord.length >= 5) {
             const upperFirstName = firstname.charAt(0).toUpperCase() + firstname.slice(1) //first character in string to uppercase//
             const upperLastName = lastname.charAt(0).toUpperCase() + lastname.slice(1)

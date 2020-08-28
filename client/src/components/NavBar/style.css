@@ -8,6 +8,29 @@
     background: #fff !important;
 }
 
+.results {
+    transform: translateY(0);
+    visibility: visible;
+    opacity: 1;
+    z-index: 20 !important;
+    width: 22.5%;
+    margin-top: 20px;
+    background: white;
+    border-radius: 10px;
+    padding: 10px;
+    height: auto;
+    position: absolute;
+    left: 51%;
+}
+ 
+
+.results h1 {
+padding-left: 10px;
+  height: 45px;
+  line-height: 45px;
+}
+  
+
 
 
 

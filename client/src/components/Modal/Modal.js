@@ -12,6 +12,11 @@ function DisplayModal(props) {
     setSecondOpen(true)
   }
 
+  const closeModal = () => {
+    setSecondOpen(false)
+    setFirstOpen(false)
+  }
+
   return (
     <>
       <Button basic color='purple' onClick={() => setFirstOpen(true)}>Save Chord To Profile</Button>
@@ -23,16 +28,15 @@ function DisplayModal(props) {
         size='tiny'
         className='modal'
       >
-        <Modal.Header>Save Chord to Profile??</Modal.Header>
-        <Modal.Actions>
+        <Modal.Header style={{display: 'flex', justifyContent: 'center'}}>Save Chord to Profile??</Modal.Header>
+        <Modal.Actions style={{display: 'flex', justifyContent: 'center'}}>
           <Button color='red' onClick={() => setFirstOpen(false)}>
             Nope
-
-            <Icon name='x' />
+            <Icon className='ml-2' name='x' />
           </Button>
           <Button color='green' onClick={e => saveChordToProfile(props.id)}>
             Yes
-            <Icon name='check' />
+            <Icon className='ml-2' name='check' />
           </Button>
         </Modal.Actions>
 
@@ -41,15 +45,18 @@ function DisplayModal(props) {
           open={secondOpen}
           size='tiny'
         >
-          <Modal.Header>Chord Successfully saved to Profile</Modal.Header>
-          <Modal.Content>
+          <Modal.Header style={{display: 'flex', justifyContent: 'center'}}>Success</Modal.Header>
+          <Modal.Content style={{display: 'flex', justifyContent: 'center'}}>
             <Icon name='check' />
+            Chord Successfully saved to Profile
           </Modal.Content>
-          <Modal.Actions>
+          <Modal.Actions style={{display: 'flex', justifyContent: 'center'}}>
             <Button
               icon='x'
-              onClick={() => setSecondOpen(false)}
+              className='w-33'
+              onClick={closeModal}
             />
+            <Button className='w-33'>Go To Profile</Button>
           </Modal.Actions>
         </Modal>
       </Modal>

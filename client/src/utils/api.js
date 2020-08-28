@@ -19,6 +19,10 @@ export default {
         return axios.get('/api/progressions')
     },
 
+    getUsers: function() {
+        return axios.get('/api/users')
+    },
+
     registerUser: function(data) {
         return axios.post('/api/users/signup', data)
     },

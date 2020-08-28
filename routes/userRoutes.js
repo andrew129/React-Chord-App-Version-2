@@ -8,6 +8,12 @@ router.post("/login",  function (req, res, next) {
 }, passport.authenticate("local", { successRedirect: '/' }), (req, res) => {
 });
 
+router.get('/', function(req, res) {
+    db.User.find({})
+        .then(dbUser => res.json(dbUser))
+        .catch(err => res.json(err))
+})
+
 router.post('/signup', function(req, res) {
     db.User.create({
         first_name: req.body.first_name,

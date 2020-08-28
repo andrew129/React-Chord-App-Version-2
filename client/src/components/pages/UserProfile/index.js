@@ -2,20 +2,19 @@ import React from 'react';
 import { Menu, Header } from 'semantic-ui-react'
 import ChordList from '../../ChordList/ChordList';
 
+
 export default class UserProfile extends React.Component {
     state = { activeItem: 'Saved Chords', chords: [], showChords: false }
 
     componentDidMount() {
-        if (this.props.user) {
-            this.setState({ chords: this.props.users.savedChords })
-            console.log(this.state.chords)
-        }
+        console.log(this.props.user)
+        this.setState({ chords: this.props.user.savedChords })
     }
 
     handleItemClick = (e, { name }) => {
         this.setState({ activeItem: name,  chords: this.props.user.savedChords })
     } 
-
+    // render profile when clicked on the dropdown buttons
     render() {
         const { activeItem } = this.state
         return (
