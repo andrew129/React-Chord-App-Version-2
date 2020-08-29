@@ -15,6 +15,7 @@ function DisplayModal(props) {
   const closeModal = () => {
     setSecondOpen(false)
     setFirstOpen(false)
+    window.location.reload()
   }
 
   return (

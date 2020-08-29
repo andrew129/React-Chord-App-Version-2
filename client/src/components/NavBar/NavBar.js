@@ -65,7 +65,7 @@ class NavBar extends React.Component {
                 </div>
                 {(this.props.user) &&
                     <div className='item right' style={{padding: 0}}>
-                        <Dropdown style={{color: 'white', padding: 0}} className='link item' text={this.props.user.first_name + ' ' + this.props.user.last_name}>
+                        <Dropdown pointing style={{color: 'white', padding: 0}} className='link item' text={this.props.user.first_name + ' ' + this.props.user.last_name}>
                             <Dropdown.Menu>
                                 <Dropdown.Item className='link' text='My Profile' href={'/user/profile/' + this.props.user.first_name + '-' + this.props.user.last_name + '/' + this.props.user._id} />
                             </Dropdown.Menu>

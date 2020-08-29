@@ -186,7 +186,7 @@ class Home extends React.Component {
             selectedValue: selectedOption.value
         })
     };
-
+    // every time we filter, we grab all the chords from the database
     getNewChords = chordType => {
         this.setState({
             loading: true,
@@ -267,7 +267,7 @@ class Home extends React.Component {
                 <div className='row'>
                     {(!this.state.loading) &&
                         <div className='col-12'>
-                            <ChordList soundName={this.state.selectedValue} chords={currentChords} user={this.props.user} />
+                            <ChordList soundName={this.state.selectedValue} chords={currentChords} profile={false} user={this.props.user} />
                         </div>
                     }
                     {(this.state.loading) &&
