@@ -44,7 +44,7 @@ export default class UserProfile extends React.Component {
                             color='purple'
                         />
                     </Menu>
-                    <ChordList profile={true} match={true} chords={this.state.chords} displayType='beginning' />
+                    <ChordList profile={true} match={true} chords={this.state.chords} user={this.props.user} displayType='beginning' />
                 </div>
             }
             {(this.props.user && this.props.user._id !== this.state.userProfileId || !this.props.user) &&

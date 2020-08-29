@@ -67,7 +67,7 @@ class NavBar extends React.Component {
                     <div className='item right' style={{padding: 0}}>
                         <Dropdown style={{color: 'white', padding: 0}} className='link item' text={this.props.user.first_name + ' ' + this.props.user.last_name}>
                             <Dropdown.Menu>
-                                <Dropdown.Item className='link' text='My Profile' href={'user/profile/' + this.props.user.first_name + '-' + this.props.user.last_name + '/' + this.props.user._id} />
+                                <Dropdown.Item className='link' text='My Profile' href={'/user/profile/' + this.props.user.first_name + '-' + this.props.user.last_name + '/' + this.props.user._id} />
                             </Dropdown.Menu>
                         </Dropdown>
                         <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className='item right'><button onClick={this.handleLogout} className='ui basic purple button inverted'>Logout</button></a>
