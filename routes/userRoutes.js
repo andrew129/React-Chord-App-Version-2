@@ -49,8 +49,13 @@ router.get('/info', function(req, res) {
     }
 })
 
+router.get('/info/:id', function(req, res) {
+    db.User.findOne({_id: req.params.id})
+        .then(dbUser => res.json(dbUser))
+        .catch(err => res.json(err))
+})
+
 router.put('/addChord/:id', function(req, res) {
-    console.log(req.user)
     db.Chord.findOne(
         {
             _id: req.params.id

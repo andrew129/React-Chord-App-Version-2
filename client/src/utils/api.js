@@ -33,6 +33,9 @@ export default {
     getUserInfo: function() {
         return axios.get('/api/users/info')
     },
+    getUserInfoById: function(id) {
+        return axios.get('/api/users/info/' + id)
+    },
     logoutUser: function() {
         return axios.get('/api/users/logout')
     },

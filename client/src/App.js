@@ -42,7 +42,7 @@ class App extends Component {
           <Route exact path='/chord-progressions' component={Progressions} />
           <Route exact path='/user/signup' component={SignupForm} />
           <Route exact path='/user/login' component={LoginForm} />
-          <Route exact path='/user/profile/:name' render={props => <Profile {...props} user={this.state.user} />} />
+          <Route exact path='/user/profile/:name/:id' render={props => <Profile {...props} user={this.state.user} />} />
         </Router>
       </div>
     );

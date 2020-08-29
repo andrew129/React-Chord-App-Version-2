@@ -67,7 +67,7 @@ class NavBar extends React.Component {
                     <div className='item right' style={{padding: 0}}>
                         <Dropdown style={{color: 'white', padding: 0}} className='link item' text={this.props.user.first_name + ' ' + this.props.user.last_name}>
                             <Dropdown.Menu>
-                                <Dropdown.Item className='link' text='My Profile' href={'user/profile/' + this.props.user.first_name + '-' + this.props.user.last_name} />
+                                <Dropdown.Item className='link' text='My Profile' href={'user/profile/' + this.props.user.first_name + '-' + this.props.user.last_name + '/' + this.props.user._id} />
                             </Dropdown.Menu>
                         </Dropdown>
                         <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className='item right'><button onClick={this.handleLogout} className='ui basic purple button inverted'>Logout</button></a>
@@ -95,7 +95,7 @@ class NavBar extends React.Component {
                     {(this.state.users.length > 0 && this.state.userSearched !== '') &&
                         <React.Fragment>
                             {this.state.users.map((user, index) => (
-                                <button className={`ui basic ${index === this.state.users.length - 1 ? '' : 'mb-3'} button w-100 ${index % 2 === 0 ? 'purple' : 'red'}`}>{user.first_name}</button>
+                                <a href={`/user/profile/${user.first_name}-${user.last_name}/${user._id}`}><button className={`ui basic ${index === this.state.users.length - 1 ? '' : 'mb-3'} button w-100 ${index % 2 === 0 ? 'purple' : 'red'}`}>{user.first_name}</button></a>
                             ))}
                         </React.Fragment>
                     }
