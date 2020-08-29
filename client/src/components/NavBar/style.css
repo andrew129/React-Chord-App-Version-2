@@ -8,6 +8,14 @@
     background: #fff !important;
 }
 
+.nav-link:hover {
+    transform: scaleX(1.2);
+}
+
+.nav-link {
+    transition: transform 0.3s ease-out;
+}
+
 .results {
     transform: translateY(0);
     visibility: visible;
@@ -17,7 +25,7 @@
     margin-top: 20px;
     background: white;
     border-radius: 10px;
-    padding: 10px;
+    padding: 15px;
     height: auto;
     position: absolute;
     left: 51%;

@@ -236,7 +236,7 @@ class Home extends React.Component {
                         {(!this.props.user) &&
                             <div style={{width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginTop: 150}}>
                                 <h3 style={{marginBottom: 40}} className='header'>Interested in submitting chords, Sign up using the button below</h3>
-                                <a href='user/signup'><button className='ui red button'>Register</button></a>
+                                <a href='user/signup'><button className='ui large w-100 red button'>Register</button></a>
                             </div>
                         }
                     </div>

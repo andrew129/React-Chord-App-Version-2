@@ -5,7 +5,7 @@ import API from '../../../utils/api';
 
 
 export default class UserProfile extends React.Component {
-    state = { activeItem: 'Saved Chords', chords: [], showChords: false, user: null, userProfileName: '', userProfileId: null }
+    state = { activeItem: 'Saved Chords', chords: [], user: null, userProfileName: '', userProfileId: null }
 
     componentDidMount() {
         let name = this.props.match.params.name.split('-')
@@ -13,7 +13,7 @@ export default class UserProfile extends React.Component {
 
         API.getUserInfoById(id).then(res => this.setState({user: res.data, chords: res.data.savedChords}))
 
-        this.setState({ userProfileName: `${name[0]} ${name[1]}`, userProfileId: this.props.match.params.id})
+        this.setState({ userProfileName: `${name[0]} ${name[1]}`, userProfileId: id})
 
     }
 
