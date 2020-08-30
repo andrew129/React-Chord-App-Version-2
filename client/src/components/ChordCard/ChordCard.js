@@ -31,16 +31,16 @@ const ChordCard = props => {
             <h5 style={{fontSize: 18}}>{props.chordName}</h5>
             <Piano soundName={props.soundName} activeNotes={props.activeNotes} />
             <p style={{marginTop: 6, fontWeight: 500}}>Added by: {props.author}</p>
-            {(props.user && !props.profile && !chordSaved || props.profile && !props.match && props.user && !chordSaved) &&
+            {(props.user && !props.profile && !chordSaved|| props.profile && !props.match && props.user && !chordSaved) &&
                 <DisplayModal key={props.id} id={props.id} />
             }
             {(!props.user && !props.profile && !chordSaved || props.profile && !props.match && !props.user && !chordSaved) &&
                 <a href='/user/signup'><button className='ui purple basic button'>Save To Profile</button></a>
             }
-            {(props.user && props.profile && props.match && !chordSaved || props.user && chordSaved && props.profile) &&
+            {(props.profile && props.match && !chordSaved || props.user && chordSaved && props.profile && props.match) &&
                 <button key={props.id} id={props.id} className='ui red basic button' onClick={deleteFromProfile}>Remove From Profile</button>
             }
-            {(props.user && chordSaved && !props.profile) &&
+            {(props.user && chordSaved && !props.profile || props.profile && chordSaved && !props.match) &&
                 <h4 style={{marginTop: 0}} class="ui purple header">
                     <i class="check purple icon"></i>
                     <div class="content">

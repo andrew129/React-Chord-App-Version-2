@@ -14,7 +14,6 @@ const options = [
     {value: 'piano', label: 'piano' },
 ];
 
-
 const customStyles = {
     control: (provided) => ({
         ...provided,
@@ -285,6 +284,7 @@ class Home extends React.Component {
                             totalChords={this.state.chords.length}
                             chordsPerPage={this.state.chordsPerPage}
                             paginate={this.paginate}
+                            currentPage={this.state.currentPage}
                         />
                     </div>
                     <div className='col-2'>

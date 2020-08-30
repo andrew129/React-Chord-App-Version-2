@@ -8,7 +8,7 @@ const Pagination = props => {
     return (
         <div style={{background: '#a333c8', border: 'solid 2px black'}} className='ui borderless menu mb-5'>
             {pageNumbers.map(number => (
-                <a href='#' style={{color: 'white'}} onClick={() => props.paginate(number)} className='item'>{number}</a>
+                <a href='#' style={{color: 'white'}} onClick={() => props.paginate(number)} className={props.currentPage === number ? 'active page-active item' : 'item'}>{number}</a>
             ))}
         </div>
     )

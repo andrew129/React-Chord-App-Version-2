@@ -5,3 +5,8 @@
 .css-1wa3eu0-placeholder {
     color: white !important;
 }
+
+.page-active {
+    background: violet !important;
+    font-weight: bold !important;
+}
