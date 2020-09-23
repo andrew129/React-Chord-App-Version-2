@@ -51,9 +51,11 @@ class NavBar extends React.Component {
         return (
             <React.Fragment>
             <div style={{borderBottom: 'solid 2px black', borderRadius: 6}} className="ui top fixed menu borderless">
-                <div className='header item'>
-                    <a className='nav-link hover' style={{padding: 5}} href='/'><h4 className='chord-fact' style={{textShadow: '2px 6px 7px black, 4px -6px 7px black', color: 'black'}}>Chord Factory</h4></a>
-                </div>
+                <h3 style={{padding: 15, color: 'black', textShadow: '0px 4px 3px rgba(150, 150, 150, 1)'}} className="hover medium header violet ui item">
+                    <i class="purple music icon"></i>
+                    <h3 style={{marginRight: 5, fontSize: '1.25rem'}} class='ui purple sub header'>Chord</h3>
+                    <h3 style={{fontSize: '1.25rem'}} class='ui violet sub medium header'>Factory</h3>
+                </h3>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className={`item`}>Chords</a>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/chord-progressions' className='item'>Chord Progressions</a>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/generator' className='item'>Chord Generator</a>

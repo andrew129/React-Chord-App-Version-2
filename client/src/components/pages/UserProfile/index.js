@@ -56,6 +56,7 @@ export default class UserProfile extends React.Component {
     } 
 
     render() {
+        // use require when importing images in react
         const { activeItem } = this.state
         return (
             <div>
