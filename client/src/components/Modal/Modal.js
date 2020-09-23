@@ -61,9 +61,9 @@ function DisplayModal(props) {
           </Modal.Actions>
         </Modal>
       </Modal>
-    <React.Fragment/>
+    </React.Fragment>
   )
 }
 
-export default DisplayModal
+export default DisplayModal;
   
