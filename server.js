@@ -38,8 +38,8 @@ app.use('/api/chords', chords)
 app.use('/api/progressions', progressions)
 app.use('/api/users', users)
 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
 }
 
 app.get("*", function(req, res) {
