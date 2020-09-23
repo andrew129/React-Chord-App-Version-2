@@ -19,7 +19,7 @@ function DisplayModal(props) {
   }
 
   return (
-    <>
+    <React.Fragment>
       <Button basic color='purple' onClick={() => setFirstOpen(true)}>Save Chord To Profile</Button>
 
       <Modal
@@ -61,7 +61,7 @@ function DisplayModal(props) {
           </Modal.Actions>
         </Modal>
       </Modal>
-    </>
+    <React.Fragment/>
   )
 }
 
