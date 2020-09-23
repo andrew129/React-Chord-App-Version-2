@@ -44,20 +44,20 @@ class NavBar extends React.Component {
             this.setState({users: filteredUsers})
             console.log(this.state.users)
         })
-        // onclick find user by id send to profile
     }
 
     render() {
         return (
             <React.Fragment>
-            <div style={{borderBottom: 'solid 2px black', borderRadius: 6}} className="ui top fixed menu borderless">
-                <h3 style={{padding: 15, color: 'black', textShadow: '0px 4px 2px #DCDCDC'}} className="hover medium header violet ui item">
+            <div style={{borderRadius: 6, borderBottom: 'solid violet 2px'}} className="ui top fixed menu borderless">
+                <h3 style={{padding: 15, color: 'black', textShadow: '0px 4px 2px rgb(145, 143, 143)'}} className="hover medium header violet ui item">
                     <i class="purple music icon"></i>
                     <h3 style={{marginRight: 5, fontSize: '1.25rem'}} class='ui purple sub header'>Chord</h3>
                     <h3 style={{fontSize: '1.25rem'}} class='ui violet sub medium header'>Factory</h3>
                 </h3>
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/' className={`item`}>Chords</a>
-                <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/chord-progressions' className='item'>Chord Progressions</a>
+                {/* page down for maintenance */}
+                {/* <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/chord-progressions' className='item'>Chord Progressions</a> */}
                 <a style={{color: 'white', textShadow: '0px 0px 1px #fff'}} className='nav-link' href='/generator' className='item'>Chord Generator</a>
                 <div style={{width: '25%'}} class="ui right aligned category search item">
                     <div onChange={this.filterSearches} value={this.state.userSearched} style={{border: 'solid white 1px', padding: '10px', color: 'white'}} class="ui transparent icon input circular">
