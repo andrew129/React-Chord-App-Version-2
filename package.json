@@ -13,11 +13,14 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
+  "engines": {
+    "node": ">=12"
+  },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "nodemon": "^1.18.7"
+    "nodemon": "^1.18.7",
   },
   "dependencies": {
     "axios": "^0.19.2",
